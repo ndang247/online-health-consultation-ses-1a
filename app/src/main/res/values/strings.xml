@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Online Health care</string>
+    <string name="create_a_new_account_txt">Create A New Account</string>
+    <string name="username_input">Username</string>
+    <string name="email_input">Email</string>
+    <string name="confirm_password_input">Confirm Password</string>
+    <string name="password_input">Password</string>
+    <string name="register_txt">Register</string>
+    <string name="already_have_an_account_txt">Already have an account!</string>
+    <string name="login_username_input">Username :</string>
+    <string name="login_password_input">Password :</string>
+    <string name="login_txt">Login</string>
+    <string name="register_here_txt">Register Here</string>
 </resources>
