@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -24,10 +25,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    // Firebase Auth
+    implementation 'com.google.firebase:firebase-auth:19.3.2'
+    // Firebase pre-built UI for Auth
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+    // Facebook login
+    implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.cardview:cardview:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 

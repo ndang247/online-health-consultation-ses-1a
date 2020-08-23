@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_and_registration_background">
+
+
+    <ImageView
+        android:id="@+id/heartIcon"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/heart_icon" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heartIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/create_a_new_account_txt"
+        android:textColor="#82B1FF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <EditText
+    android:id="@+id/firstLegalNameEditTxt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textView1"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="10dp"
+    android:background="#11000000"
+    android:ems="10"
+    android:hint="@string/first_legal_name_edit_txt"
+    android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/middleNameEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstLegalNameEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/middle_name_edit_txt"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/lastLegalNameEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/middleNameEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/last_legal_name_edit_txt"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/emailEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastLegalNameEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/email_edit_txt"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/passwordEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/password_edit_txt"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/confirmPasswordEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/confirm_password_edit_txt"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirmPasswordEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:width="200dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="sans-serif"
+        android:text="@string/register_here_txt"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/already_have_an_account_txt"
+        android:textColor="#FF8A80" />
+</RelativeLayout>

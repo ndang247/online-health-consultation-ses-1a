@@ -1,14 +1,19 @@
 <resources>
     <string name="app_name">Online Health care</string>
     <string name="create_a_new_account_txt">Create A New Account</string>
-    <string name="username_input">Username</string>
-    <string name="email_input">Email</string>
-    <string name="confirm_password_input">Confirm Password</string>
-    <string name="password_input">Password</string>
+    <string name="first_legal_name_edit_txt">First Legal Name</string>
+    <string name="middle_name_edit_txt">Middle Name (Optional)</string>
+    <string name="last_legal_name_edit_txt">Last Legal Name</string>
+    <string name="email_edit_txt">Email</string>
+    <string name="confirm_password_edit_txt">Confirm Password</string>
+    <string name="password_edit_txt">Password</string>
     <string name="register_txt">Register</string>
     <string name="already_have_an_account_txt">Already have an account!</string>
-    <string name="login_username_input">Username :</string>
-    <string name="login_password_input">Password :</string>
-    <string name="login_txt">Login</string>
+    <string name="login_email_edit_txt">Username :</string>
+    <string name="login_password_edit_txt">Password :</string>
+    <string name="login_btn_txt">Login</string>
     <string name="register_here_txt">Register Here</string>
+    <string name="log_out_btn_txt">Log Out</string>
+    <string name="sign_in_options_txt">Sign In Options</string>
+    <string name="email_password_sign_in_btn">Email/Password</string>
 </resources>
