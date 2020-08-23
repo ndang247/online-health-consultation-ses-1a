@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_and_registration_background"
 
-    tools:context=".MainActivity">
+    tools:context=".PatientLoginActivity">
 
     <ImageView
         android:id="@+id/heartIcon"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/heart_icon"/>
 
     <EditText
-        android:id="@+id/usernameTxt"
+        android:id="@+id/emailEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -26,46 +26,49 @@
         android:background="#11000000"
         android:ems="10"
         android:drawableLeft="@drawable/ic_action_user"
-        android:hint="@string/login_username_input"
-        android:inputType="textPersonName"
+        android:hint="@string/email_edit_txt"
+        android:inputType="textEmailAddress"
         android:textSize="16sp"
         android:drawableStart="@drawable/ic_action_user" />
 
     <EditText
-        android:id="@+id/passwordTxt"
+        android:id="@+id/passwordEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/emailEditTxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="30dp"
         android:background="#11000000"
-        android:ems="10"
+        android:drawableStart="@drawable/ic_action_password"
         android:drawableLeft="@drawable/ic_action_password"
-        android:hint="@string/login_password_input"
+        android:ems="10"
+        android:hint="@string/password_edit_txt"
         android:inputType="textPassword"
-        android:textSize="16sp"
-        android:drawableStart="@drawable/ic_action_password" />
+        android:textSize="16sp" />
 
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_txt"
+        android:layout_below="@+id/passwordEditTxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="100dp"
+        android:width="200dp"
         android:background="@color/colorAccent"
         android:fontFamily="sans-serif"
-        android:width="200dp"
+        android:text="@string/login_btn_txt"
         android:textColor="#fff"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/registerTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/loginBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="600dp"
-        android:text="@string/register_here_txt"/>
+        android:layout_marginTop="50dp"
+        android:text="@string/register_here_txt" />
 
 </RelativeLayout>
