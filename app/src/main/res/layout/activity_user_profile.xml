@@ -72,7 +72,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_action_Check" />
+                    android:src="@drawable/ic_action_check" />
 
                 <TextView
                     android:id="@+id/currentBooking_label"
@@ -115,7 +115,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_action_History" />
+                    android:src="@drawable/ic_action_history" />
 
                 <TextView
                     android:id="@+id/historyBooking_label"
@@ -174,7 +174,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_Contact"
+                android:drawableLeft="@drawable/ic_action_contact"
                 android:text="0412345678" />
 
 
