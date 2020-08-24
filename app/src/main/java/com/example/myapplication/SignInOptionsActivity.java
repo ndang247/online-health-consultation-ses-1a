@@ -27,7 +27,8 @@ public class SignInOptionsActivity extends AppCompatActivity implements View.OnC
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-    private Button emailPasswordSignInBtn;
+    private Button loginAsPatientBtn;
+    private Button loginAsDoctorBtn;
     private SignInButton googleSignInBtn;
     private GoogleSignInClient mSignInClient;
     // Firebase instance variables
@@ -45,7 +46,8 @@ public class SignInOptionsActivity extends AppCompatActivity implements View.OnC
 
         // Set click listeners
         googleSignInBtn.setOnClickListener(this);
-        emailPasswordSignInBtn.setOnClickListener(this);
+        loginAsPatientBtn.setOnClickListener(this);
+        loginAsDoctorBtn.setOnClickListener(this);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -56,7 +58,8 @@ public class SignInOptionsActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initViews() {
-        emailPasswordSignInBtn = findViewById(R.id.emailPasswordSignInBtn);
+        loginAsPatientBtn = findViewById(R.id.loginAsPatientBtn);
+        loginAsDoctorBtn = findViewById(R.id.loginAsDoctorBtn);
         googleSignInBtn = findViewById(R.id.googleSignInBtn);
     }
 
@@ -66,13 +69,16 @@ public class SignInOptionsActivity extends AppCompatActivity implements View.OnC
             case R.id.googleSignInBtn:
                 signInWithGoogle();
                 break;
-            case R.id.emailPasswordSignInBtn:
-                signInWithEmailPassword();
+            case R.id.loginAsPatientBtn:
+                loginAsPatient();
+                break;
+            case R.id.loginAsDoctorBtn:
+                // do something
                 break;
         }
     }
 
-    private void signInWithEmailPassword() {
+    private void loginAsPatient() {
         Intent intent = new Intent(SignInOptionsActivity.this, PatientLoginActivity.class);
         startActivity(intent);
         finish();

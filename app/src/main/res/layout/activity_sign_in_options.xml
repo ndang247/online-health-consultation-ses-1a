@@ -5,6 +5,7 @@
     android:id="@+id/signInEmailPasswordBtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
     tools:context=".SignInOptionsActivity">
 
     <TextView
@@ -14,22 +15,34 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:text="@string/sign_in_options_txt"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/emailPasswordSignInBtn"
+        android:id="@+id/loginAsPatientBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/email_password_sign_in_btn"
+        android:text="@string/login_as_patient_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <Button
+        android:id="@+id/loginAsDoctorBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_as_doctor_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginAsPatientBtn"
+        android:layout_marginTop="30dp" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleSignInBtn"
@@ -37,11 +50,11 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailPasswordSignInBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/loginAsDoctorBtn"
+        android:layout_marginTop="30dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
