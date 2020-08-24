@@ -32,6 +32,9 @@ dependencies {
     // Facebook login
     implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
 
+    implementation 'com.google.android.material:material:1.2.0'
+    // Castiel add for UI design
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.cardview:cardview:1.0.0'
