@@ -22,6 +22,15 @@ public class PatientRegistrationActivity extends AppCompatActivity {
     private Button registerBtn;
     private FirebaseAuth mAuth;
 
+    // patient profile:
+    // medicare number, username
+    // blood type, height, weight
+
+    // for doctor login/registration:
+    // clinics - dropdown menu or text field
+    // specialty - text field
+    // verification/certificate numbers
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
