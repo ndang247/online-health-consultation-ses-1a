@@ -9,6 +9,8 @@
 
     tools:context=".PatientLoginActivity">
 
+
+
     <ImageView
         android:id="@+id/heartIcon"
         android:layout_width="200dp"
