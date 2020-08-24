@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_and_registration_background">
+    android:background="@drawable/app_background">
 
 
     <ImageView
         android:id="@+id/heartIcon"
         android:layout_width="200dp"
-        android:layout_height="230dp"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -65,11 +65,12 @@
         android:hint="@string/last_legal_name_edit_txt"
         android:inputType="textPersonName" />
 
+
     <EditText
         android:id="@+id/emailEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lastLegalNameEditTxt"
+        android:layout_below="@+id/medicareNumberTxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="#11000000"
@@ -78,11 +79,29 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/medicareNumberTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastLegalNameEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="10dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/medicare_number_edit_txt"
+        android:inputType="number" />
+
+    <EditText
         android:id="@+id/passwordEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/emailEditTxt"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
         android:background="#11000000"
         android:ems="10"
@@ -95,19 +114,88 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/passwordEditTxt"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:background="#11000000"
         android:ems="10"
         android:hint="@string/confirm_password_edit_txt"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/registerBtn"
+    <EditText
+        android:id="@+id/phoneNumberTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/confirmPasswordEditTxt"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/phone_number_edit_txt"
+        android:inputType="phone" />
+
+
+    <EditText
+        android:id="@+id/ageTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberTxt"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@+id/heightTxt"
+        android:layout_toLeftOf="@+id/heightTxt"
+        android:background="#11000000"
+        android:ems="2"
+        android:hint="@string/age_edit_txt"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/heightTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberTxt"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@+id/weightTxt"
+        android:layout_toLeftOf="@+id/weightTxt"
+        android:background="#11000000"
+        android:ems="2"
+        android:hint="@string/height_edit_txt"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/weightTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberTxt"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginRight="80dp"
+        android:background="#11000000"
+        android:ems="2"
+        android:hint="@string/weight_edit_txt"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/already_have_an_account_txt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="20dp"
         android:width="200dp"
         android:background="@color/colorAccent"
         android:fontFamily="sans-serif"
@@ -116,12 +204,18 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/already_have_an_account_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/registerBtn"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/already_have_an_account_txt"
         android:textColor="#FF8A80" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberTxt"/>
 </RelativeLayout>
