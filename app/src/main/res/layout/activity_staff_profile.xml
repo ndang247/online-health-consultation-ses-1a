@@ -74,7 +74,7 @@
                     android:layout_height="90dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_action_Check"
-                    app:srcCompat="@drawable/ic_action_user" />
+                    />
 
                 <TextView
                     android:id="@+id/currentBooking_desc"
