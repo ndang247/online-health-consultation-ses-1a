@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ADDDF1EF"
     android:orientation="vertical"
-    tools:context=".user_profile">
+    tools:context=".DoctorProfileActivity">
 
 
     <RelativeLayout
@@ -16,35 +16,35 @@
         android:padding="20dp">
 
         <ImageView
-            android:id="@+id/eHealth_icon"
+            android:id="@+id/ehealth_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:src="@drawable/ehealth_icon" />
 
         <TextView
-            android:id="@+id/full_name"
+            android:id="@+id/fullNameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/eHealth_icon"
+            android:layout_toRightOf="@+id/ehealth_icon"
             android:fontFamily="@font/bungee"
             android:includeFontPadding="false"
-            android:text="Jack Daniels"
+            android:text="@string/welcome_back_txt"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/user_identity"
+            android:id="@+id/doctorIdentityTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/full_name"
+            android:layout_below="@+id/fullNameTxt"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/eHealth_icon"
+            android:layout_toRightOf="@+id/ehealth_icon"
             android:fontFamily="@font/bungee"
 
             android:includeFontPadding="false"
-            android:text="Student"
+            android:text="@string/doctor_name_txt"
             android:textSize="18sp" />
 
     </RelativeLayout>
@@ -69,28 +69,20 @@
                 android:padding="5dp">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/doctorAvaImg"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_action_check" />
-
-                <TextView
-                    android:id="@+id/currentBooking_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/bungee"
-                    android:includeFontPadding="false"
-                    android:text="Yes"
-                    android:textSize="20sp" />
+                    android:src="@drawable/ic_action_check"
+                    />
 
                 <TextView
                     android:id="@+id/currentBooking_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/currentBooking_label"
+                    android:layout_below="@+id/doctorAvaImg"
                     android:layout_centerInParent="true"
-                    android:text="Current Bookings Status"
+                    android:text="@string/change_the_avatar_txt"
                     android:textSize="14sp" />
 
             </RelativeLayout>
@@ -112,28 +104,31 @@
                 android:padding="5dp">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/doctorScheduleImg"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_action_history" />
+                    android:src="@drawable/ic_action_history"
+                    app:srcCompat="@android:drawable/ic_menu_today" />
 
                 <TextView
-                    android:id="@+id/historyBooking_label"
+                    android:id="@+id/histBookingTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/doctorScheduleImg"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/bungee"
                     android:includeFontPadding="false"
-                    android:text="20"
+                    android:text="@string/hist_booking_label"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/historyBooking_desc"
+                    android:id="@+id/histBookingDescTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/historyBooking_label"
+                    android:layout_below="@+id/histBookingTxt"
                     android:layout_centerInParent="true"
-                    android:text="Bookings History"
+                    android:text="@string/schedule_txt"
                     android:textSize="14sp" />
 
             </RelativeLayout>
@@ -154,28 +149,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Age">
+            android:hint="@string/location_txt">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_age"
-                android:text="22" />
-
-
+                android:drawableLeft="@drawable/ic_action_user"
+                android:text="@string/work_location_txt" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Phone Number">
+            android:hint="@string/phone_number_txt">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_contact"
-                android:text="0412345678" />
+                android:text="@string/phone_number_edit_txt" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -184,13 +177,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Blood Type">
+            android:hint="@string/working_days_txt">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_body"
-                android:text="O" />
+                android:text="@string/working_days_edit_txt" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -199,13 +192,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Height">
+            android:hint="@string/department_txt">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_body"
-                android:text="180cm" />
+                android:text="@string/department_specialty_edit_txt" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -214,13 +207,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Weight">
+            android:hint="@string/self_introduce_txt">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_body"
-                android:text="50Kg" />
+                android:text="@string/self_introduce_edit_txt" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -231,18 +224,7 @@
 
             android:background="@color/colorAccent"
             android:fontFamily="@font/bungee"
-            android:text="Update">
-
-        </Button>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:background="#A7FFEB"
-            android:fontFamily="@font/bungee"
-            android:text="Back">
-
+            android:text="@string/update_btn">
         </Button>
 
 

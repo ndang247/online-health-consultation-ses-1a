@@ -9,11 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".register_doc"></activity>
-        <activity android:name=".register_doc_verify" />
-        <activity android:name=".login_doc_page" />
-        <activity android:name=".staff_profile" />
-        <activity android:name=".user_profile" />
+        <activity android:name=".DoctorRegistrationActivity" />
+        <activity android:name=".DoctorLoginActivity" />
+        <activity android:name=".DoctorProfileActivity" />
+        <activity android:name=".PatientProfileActivity" />
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
