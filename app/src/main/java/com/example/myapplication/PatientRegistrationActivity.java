@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class PatientRegistrationActivity extends AppCompatActivity {
 
     private EditText firstLegalNameEditTxt, middleLegalEditTxt, lastLegalNameEditTxt,
-            medicareNumberTxt, phoneNumberTxt, ageTxt, heightTxt, weightTxt,
+            medicareNumberTxt, phoneNumberTxt,
             emailEditTxt, passwordEditTxt, confirmPasswordEditTxt;
     private TextView already_have_an_account_txt;
     private Button registerBtn;
@@ -58,9 +58,6 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         passwordEditTxt = findViewById(R.id.passwordEditTxt);
         confirmPasswordEditTxt = findViewById(R.id.confirmPasswordEditTxt);
         phoneNumberTxt = findViewById(R.id.phoneNumberTxt);
-        ageTxt = findViewById(R.id.ageTxt);
-        heightTxt = findViewById(R.id.heightTxt);
-        weightTxt = findViewById(R.id.weightTxt);
         registerBtn = findViewById(R.id.registerBtn);
         already_have_an_account_txt = findViewById(R.id.already_have_an_account_txt);
     }
@@ -92,57 +89,46 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         return phoneNumberTxt.getText().toString();
     }
 
-    public String getAge() {
-        return ageTxt.getText().toString();
-    }
-
-    // height and weight are optional
-    public String getHeight() {
-        return heightTxt.getText().toString();
-    }
-
-    public String getWeight() {
-        return weightTxt.getText().toString();
-    }
-
     private void createAccount (String email, final String password, String confirmPassword) {
         if(getFirstLegalName().isEmpty()) {
             firstLegalNameEditTxt.setError("First Legal Name Is Required!");
             firstLegalNameEditTxt.requestFocus();
+            return;
         }
-
         if(getLastLegalName().isEmpty()) {
             lastLegalNameEditTxt.setError("Last Legal Name Is Required!");
             lastLegalNameEditTxt.requestFocus();
+            return;
         }
-
         if(email.isEmpty()) {
             emailEditTxt.setError("Please Enter Your Email!");
             emailEditTxt.requestFocus();
+            return;
         }
         if(password.isEmpty()) {
             passwordEditTxt.setError("Please Enter Your Password!");
             passwordEditTxt.requestFocus();
+            return;
         }
         if(password.length() <= 7) {
             passwordEditTxt.setError("Password Need To Be At Least 8!");
             passwordEditTxt.requestFocus();
+            return;
         }
         if(!password.equals(confirmPassword)) {
             confirmPasswordEditTxt.setError( "Password Does Not Match!" );
             confirmPasswordEditTxt.requestFocus();
+            return;
         }
         if (getMedicareNumber().isEmpty()) {
             medicareNumberTxt.setError("Medicare Number Is Required");
             medicareNumberTxt.requestFocus();
+            return;
         }
         if (getPhoneNumber().isEmpty()) {
             phoneNumberTxt.setError("Phone Number Is Required");
             phoneNumberTxt.requestFocus();
-        }
-        if (getAge().isEmpty()) {
-            ageTxt.setError("Age Is Required");
-            ageTxt.requestFocus();
+            return;
         }
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

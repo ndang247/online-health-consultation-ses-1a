@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class IntroActivity extends AppCompatActivity implements View.OnClickListener {
+public class IntroActivity extends AppCompatActivity {
 
     private Button getStartedBtn;
 
@@ -18,19 +18,17 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_intro);
 
         initViews();
+
+        getStartedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signInOptions();
+            }
+        });
     }
 
     private void initViews() {
         getStartedBtn = findViewById(R.id.getStartedBtn);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.getStartedBtn:
-                signInOptions();
-                break;
-        }
     }
 
     private void signInOptions() {

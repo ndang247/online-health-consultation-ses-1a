@@ -70,14 +70,17 @@ public class PatientLoginActivity extends AppCompatActivity {
         if (getEmail().isEmpty()) {
             emailEditTxt.setError("Email Is Required!");
             emailEditTxt.requestFocus();
+            return;
         }
         if (getPassword().isEmpty()) {
             passwordEditTxt.setError("Password Is Required!");
             passwordEditTxt.requestFocus();
+            return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches()) { // Check is the email is real email
             emailEditTxt.setError("Please Enter A Valid Email");
             emailEditTxt.requestFocus();
+            return;
         }
         mAuth.signInWithEmailAndPassword(getEmail(), getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
