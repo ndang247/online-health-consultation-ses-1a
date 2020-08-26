@@ -10,28 +10,42 @@
     tools:context=".PatientLoginActivity">
 
 
-
     <ImageView
         android:id="@+id/heartIcon"
         android:layout_width="200dp"
         android:layout_height="230dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
-        app:srcCompat="@drawable/heart_icon"/>
+        app:srcCompat="@drawable/heart_icon" />
 
     <EditText
         android:id="@+id/emailEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/medicareNumberEditTxt"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/heartIcon"
+        android:layout_marginTop="30dp"
         android:background="#11000000"
-        android:ems="10"
+        android:drawableStart="@drawable/ic_action_user"
         android:drawableLeft="@drawable/ic_action_user"
+        android:ems="10"
         android:hint="@string/email_edit_txt"
         android:inputType="textEmailAddress"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/medicareNumberEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heartIcon"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/medicare_number_edit_txt"
+        android:background="#11000000"
+        android:layout_centerHorizontal="true"
         android:textSize="16sp"
-        android:drawableStart="@drawable/ic_action_user" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/passwordEditTxt"
@@ -55,17 +69,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/passwordEditTxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:width="200dp"
         android:background="@color/colorAccent"
         android:fontFamily="sans-serif"
-        android:text="@string/login_btn_txt"
+        android:text="@string/login_as_patient_btn"
         android:textColor="#fff"
         android:textSize="18sp" />
 
 
     <TextView
-        android:id="@+id/registerTxt"
+        android:id="@+id/alreadyRegisterTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginBtn"

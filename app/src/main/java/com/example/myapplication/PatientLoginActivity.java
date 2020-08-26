@@ -1,11 +1,8 @@
 package com.example.myapplication;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -17,13 +14,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Objects;
-
 public class PatientLoginActivity extends AppCompatActivity {
 
     private static String TAG = "LoginActivity";
     private TextView registerTxt;
-    private EditText emailEditTxt, passwordEditTxt;
+    private EditText emailEditTxt, passwordEditTxt, medicareNumberEditTxt;
     private Button loginBtn;
     private FirebaseAuth mAuth;
 
@@ -55,7 +50,8 @@ public class PatientLoginActivity extends AppCompatActivity {
         emailEditTxt = findViewById(R.id.emailEditTxt);
         passwordEditTxt = findViewById(R.id.passwordEditTxt);
         loginBtn = findViewById(R.id.loginBtn);
-        registerTxt = findViewById(R.id.registerTxt);
+        medicareNumberEditTxt = findViewById(R.id.medicareNumberEditTxt);
+        registerTxt = findViewById(R.id.alreadyRegisterTxt);
     }
 
     private String getEmail() {
@@ -66,7 +62,14 @@ public class PatientLoginActivity extends AppCompatActivity {
         return passwordEditTxt.getText().toString();
     }
 
+    private String getMedicareNumber() { return medicareNumberEditTxt.getText().toString(); }
+
     private void signIn() {
+        if (getMedicareNumber().isEmpty()) {
+            medicareNumberEditTxt.setError("Medicare Number Is Required!");
+            medicareNumberEditTxt.requestFocus();
+            return;
+        }
         if (getEmail().isEmpty()) {
             emailEditTxt.setError("Email Is Required!");
             emailEditTxt.requestFocus();

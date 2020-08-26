@@ -193,6 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
+        android:entries="@array/title"
         app:layout_constraintBottom_toBottomOf="@+id/titleTxt"
         app:layout_constraintStart_toEndOf="@+id/titleTxt"
         app:layout_constraintTop_toTopOf="@+id/titleTxt" />
@@ -231,9 +232,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
         android:text="Height"
-        app:layout_constraintStart_toStartOf="@+id/phoneNumberTxt"
+        app:layout_constraintStart_toEndOf="@+id/bloodTypeEditTxt"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumberTxt" />
 
     <TextView
@@ -250,22 +253,26 @@
         android:id="@+id/heightSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:entries="@array/height_unit"
         app:layout_constraintBottom_toBottomOf="@+id/heightEditTxt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/heightEditTxt"
         app:layout_constraintTop_toTopOf="@+id/heightEditTxt"
         app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
         android:id="@+id/weightSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:entries="@array/weight_unit"
         app:layout_constraintBottom_toBottomOf="@+id/weightEditTxt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/weightEditTxt"
         app:layout_constraintTop_toTopOf="@+id/weightEditTxt"
         app:layout_constraintVertical_bias="0.0" />

@@ -17,8 +17,8 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class PatientRegistrationActivity extends AppCompatActivity {
 
-    private EditText firstLegalNameEditTxt, middleLegalEditTxt, lastLegalNameEditTxt,
-            medicareNumberTxt, phoneNumberTxt,
+    private EditText firstLegalNameEditTxt, lastLegalNameEditTxt,
+            medicareNumberTxt,
             emailEditTxt, passwordEditTxt, confirmPasswordEditTxt;
     private TextView already_have_an_account_txt;
     private Button registerBtn;
@@ -51,21 +51,16 @@ public class PatientRegistrationActivity extends AppCompatActivity {
 
     private void initViews() {
         firstLegalNameEditTxt = findViewById(R.id.firstLegalNameEditTxt);
-        middleLegalEditTxt = findViewById(R.id.middleNameEditTxt);
         lastLegalNameEditTxt = findViewById(R.id.lastLegalNameEditTxt);
         medicareNumberTxt = findViewById(R.id.medicareNumberTxt);
         emailEditTxt = findViewById(R.id.emailEditTxt);
         passwordEditTxt = findViewById(R.id.passwordEditTxt);
         confirmPasswordEditTxt = findViewById(R.id.confirmPasswordEditTxt);
-        phoneNumberTxt = findViewById(R.id.phoneNumberTxt);
         registerBtn = findViewById(R.id.registerBtn);
         already_have_an_account_txt = findViewById(R.id.already_have_an_account_txt);
     }
 
     private String getFirstLegalName() { return firstLegalNameEditTxt.getText().toString(); }
-
-    // middle name is optional
-    private String getMiddleName() { return middleLegalEditTxt.getText().toString(); }
 
     private String getLastLegalName() { return lastLegalNameEditTxt.getText().toString(); }
 
@@ -85,9 +80,6 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         return medicareNumberTxt.getText().toString();
     }
 
-    public String getPhoneNumber() {
-        return phoneNumberTxt.getText().toString();
-    }
 
     private void createAccount (String email, final String password, String confirmPassword) {
         if(getFirstLegalName().isEmpty()) {
@@ -123,11 +115,6 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         if (getMedicareNumber().isEmpty()) {
             medicareNumberTxt.setError("Medicare Number Is Required");
             medicareNumberTxt.requestFocus();
-            return;
-        }
-        if (getPhoneNumber().isEmpty()) {
-            phoneNumberTxt.setError("Phone Number Is Required");
-            phoneNumberTxt.requestFocus();
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

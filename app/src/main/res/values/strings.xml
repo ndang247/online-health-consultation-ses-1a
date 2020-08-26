@@ -11,7 +11,6 @@
     <string name="already_have_an_account_txt">Already have an account!</string>
     <string name="login_email_edit_txt">Username :</string>
     <string name="login_password_edit_txt">Password :</string>
-    <string name="login_btn_txt">Login</string>
     <string name="register_here_txt">Register Here</string>
     <string name="log_out_btn_txt">Log Out</string>
     <string name="sign_in_options_txt">Sign In or Sign Up Options Below</string>
@@ -50,4 +49,27 @@
     <string name="blood_type_edit_txt">O</string>
     <string name="height_txt">Height</string>
     <string name="weight_txt">Weight</string>
+
+    <array name="height_unit">
+        <item>Cm</item>
+    </array>
+
+    <array name="weight_unit">
+        <item>Kg</item>
+    </array>
+
+    <array name="title">
+        <item>Mr</item>
+        <item>Mrs</item>
+        <item>Ms</item>
+    </array>
+
+    <array name="clinics">
+        <item>Sydney</item>
+        <item>Redfern</item>
+        <item>NSW</item>
+        <item>NY</item>
+        <item>Brookyn</item>
+    </array>
+
 </resources>
