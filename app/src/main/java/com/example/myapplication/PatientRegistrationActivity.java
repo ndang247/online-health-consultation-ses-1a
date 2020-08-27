@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PathEffect;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,7 +48,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         // initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // get an instance then a reference of the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        mDatabase = FirebaseDatabase.getInstance().getReference("patients");
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +143,11 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             emailEditTxt.requestFocus();
             return;
         }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) { // Check is the email is real email
+            emailEditTxt.setError("Please Enter A Valid Email");
+            emailEditTxt.requestFocus();
+            return;
+        }
         if(password.isEmpty()) {
             passwordEditTxt.setError("Please Enter Your Password!");
             passwordEditTxt.requestFocus();
@@ -171,7 +177,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                     assert currentUser != null;
                     String uid = currentUser.getUid();
-                    DatabaseReference childRef = mDatabase.child("patients").child(uid);
+                    DatabaseReference childRef = mDatabase.child(uid);
 
                     HashMap userMap = new HashMap();
                     userMap.put( "firstName", getFirstLegalName() );
