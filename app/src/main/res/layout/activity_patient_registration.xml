@@ -41,19 +41,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <EditText
-        android:id="@+id/middleNameEditTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="8"
-        android:hint="Middle (Optional)"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstLegalNameEditTxt" />
-
-    <EditText
         android:id="@+id/lastLegalNameEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,12 +57,13 @@
         android:id="@+id/medicareNumberTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="8"
         android:hint="Medicare Number"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/middleNameEditTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/emailEditTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastLegalNameEditTxt" />
 
@@ -85,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:ems="8"
         android:hint="Password"
         android:inputType="textPassword"
@@ -103,56 +91,41 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/middleNameEditTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/firstLegalNameEditTxt" />
 
     <EditText
         android:id="@+id/confirmPasswordEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
         android:ems="8"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="@+id/passwordEditTxt"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/phoneNumberTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="8"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="@+id/emailEditTxt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/medicareNumberTxt" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTxt" />
 
     <TextView
         android:id="@+id/genderTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginTop="44dp"
         android:text="Gender"
-        app:layout_constraintBottom_toBottomOf="@+id/titleSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
-        app:layout_constraintStart_toEndOf="@+id/titleSpinner"
-        app:layout_constraintTop_toTopOf="@+id/titleSpinner"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/ageEditTxt"
+        app:layout_constraintTop_toBottomOf="@+id/weightEditTxt" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/genderRg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/genderTxt"
         app:layout_constraintStart_toStartOf="@+id/genderTxt"
         app:layout_constraintTop_toBottomOf="@+id/genderTxt">
 
@@ -177,29 +150,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/titleTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="32dp"
-        android:text="Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTxt" />
-
-    <Spinner
-        android:id="@+id/titleSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
-        android:entries="@array/title"
-        app:layout_constraintBottom_toBottomOf="@+id/titleTxt"
-        app:layout_constraintStart_toEndOf="@+id/titleTxt"
-        app:layout_constraintTop_toTopOf="@+id/titleTxt" />
-
-    <TextView
-        android:id="@+id/already_have_an_account_txt"
+        android:id="@+id/alreadyRegisteredTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already have an account?"
@@ -232,20 +183,20 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Height"
-        app:layout_constraintStart_toEndOf="@+id/bloodTypeEditTxt"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberTxt" />
+        app:layout_constraintBottom_toBottomOf="@+id/passwordEditTxt"
+        app:layout_constraintStart_toEndOf="@+id/passwordEditTxt"
+        app:layout_constraintTop_toTopOf="@+id/passwordEditTxt" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="Weight"
-        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeEditTxt"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -253,8 +204,8 @@
         android:id="@+id/heightSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:entries="@array/height_unit"
         app:layout_constraintBottom_toBottomOf="@+id/heightEditTxt"
         app:layout_constraintEnd_toEndOf="parent"
@@ -267,15 +218,15 @@
         android:id="@+id/weightSpinner"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:entries="@array/weight_unit"
         app:layout_constraintBottom_toBottomOf="@+id/weightEditTxt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/weightEditTxt"
         app:layout_constraintTop_toTopOf="@+id/weightEditTxt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/heightEditTxt"
@@ -294,8 +245,8 @@
         android:id="@+id/weightEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:ems="2"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
@@ -304,14 +255,14 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/ageEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:ems="2"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/ageTxt"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup2"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toEndOf="@+id/ageTxt"
         app:layout_constraintTop_toTopOf="@+id/ageTxt"
         app:layout_constraintVertical_bias="0.0" />
@@ -320,9 +271,11 @@
         android:id="@+id/ageTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
         android:text="Age"
-        app:layout_constraintStart_toStartOf="@+id/titleTxt"
-        app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

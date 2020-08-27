@@ -1,10 +1,10 @@
 package com.example.myapplication;
 
+import android.content.pm.PackageItemInfo;
+
 public class Patient {
     private String firstLegalName;
-    private String middleName;
     private String lastLegalName;
-    private String title;
     private String email;
     private String password;
     private String gender;
@@ -13,13 +13,14 @@ public class Patient {
     private String weight;
     private String bloodType;
     private String medicareNumber;
-    private String phoneNumber;
 
-    public Patient(String firstLegalName, String middleName, String lastLegalName, String title, String email, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber, String phoneNumber) {
+    public Patient() {
+
+    }
+
+    public Patient(String firstLegalName, String lastLegalName, String email, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber) {
         this.firstLegalName = firstLegalName;
-        this.middleName = middleName;
         this.lastLegalName = lastLegalName;
-        this.title = title;
         this.email = email;
         this.password = password;
         this.gender = gender;
@@ -28,7 +29,6 @@ public class Patient {
         this.weight = weight;
         this.bloodType = bloodType;
         this.medicareNumber = medicareNumber;
-        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstLegalName() {
@@ -39,28 +39,12 @@ public class Patient {
         this.firstLegalName = firstLegalName;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public String getLastLegalName() {
         return lastLegalName;
     }
 
     public void setLastLegalName(String lastLegalName) {
         this.lastLegalName = lastLegalName;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getEmail() {
@@ -125,32 +109,5 @@ public class Patient {
 
     public void setMedicareNumber(String medicareNumber) {
         this.medicareNumber = medicareNumber;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "firstLegalName='" + firstLegalName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastLegalName='" + lastLegalName + '\'' +
-                ", title='" + title + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age='" + age + '\'' +
-                ", height='" + height + '\'' +
-                ", weight='" + weight + '\'' +
-                ", bloodType='" + bloodType + '\'' +
-                ", medicareNumber='" + medicareNumber + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
     }
 }

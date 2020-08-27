@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -13,6 +14,7 @@ public class PatientActivity extends AppCompatActivity {
 
     private Button logoutBtn;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class PatientActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void initViews() {
         logoutBtn = findViewById(R.id.logoutBtn);
