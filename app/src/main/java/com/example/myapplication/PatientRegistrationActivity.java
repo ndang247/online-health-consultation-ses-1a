@@ -1,12 +1,17 @@
 package com.example.myapplication;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.PathEffect;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,15 +19,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 public class PatientRegistrationActivity extends AppCompatActivity {
 
-    private EditText firstLegalNameEditTxt, middleLegalEditTxt, lastLegalNameEditTxt,
-            medicareNumberTxt, phoneNumberTxt,
+    private EditText firstLegalNameEditTxt, lastLegalNameEditTxt,
+            bloodTypeEditTxt, heightEditTxt, weightEditTxt, ageEditTxt, medicareNumberTxt,
             emailEditTxt, passwordEditTxt, confirmPasswordEditTxt;
-    private TextView already_have_an_account_txt;
+
+    private RadioGroup genderRg;
+    private TextView alreadyRegisteredTxt;
     private Button registerBtn;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +44,19 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_patient_registration);
         // initialise views
         initViews();
-        // Initialise Firebase Auth
+        // initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        // get an instance then a reference of the database
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAccount(getEmail(), getPassword(), getConfirmPassword());
+                createAccount(getFirstLegalName(), getLastLegalName(), getEmail(), getPassword(), getConfirmPassword(), getMedicareNumber());
             }
         });
 
-        already_have_an_account_txt.setOnClickListener(new View.OnClickListener() {
+        alreadyRegisteredTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PatientRegistrationActivity.this, PatientLoginActivity.class);
@@ -51,23 +67,27 @@ public class PatientRegistrationActivity extends AppCompatActivity {
 
     private void initViews() {
         firstLegalNameEditTxt = findViewById(R.id.firstLegalNameEditTxt);
-        middleLegalEditTxt = findViewById(R.id.middleNameEditTxt);
         lastLegalNameEditTxt = findViewById(R.id.lastLegalNameEditTxt);
-        medicareNumberTxt = findViewById(R.id.medicareNumberTxt);
         emailEditTxt = findViewById(R.id.emailEditTxt);
         passwordEditTxt = findViewById(R.id.passwordEditTxt);
         confirmPasswordEditTxt = findViewById(R.id.confirmPasswordEditTxt);
-        phoneNumberTxt = findViewById(R.id.phoneNumberTxt);
+        genderRg = findViewById(R.id.genderRg);
+        ageEditTxt = findViewById(R.id.ageEditTxt);
+        heightEditTxt = findViewById(R.id.heightEditTxt);
+        weightEditTxt = findViewById(R.id.weightEditTxt);
+        bloodTypeEditTxt = findViewById(R.id.bloodTypeEditTxt);
+        medicareNumberTxt = findViewById(R.id.medicareNumberTxt);
         registerBtn = findViewById(R.id.registerBtn);
-        already_have_an_account_txt = findViewById(R.id.already_have_an_account_txt);
+        alreadyRegisteredTxt = findViewById(R.id.alreadyRegisteredTxt);
     }
 
-    private String getFirstLegalName() { return firstLegalNameEditTxt.getText().toString(); }
+    private String getFirstLegalName() {
+        return firstLegalNameEditTxt.getText().toString().trim();
+    }
 
-    // middle name is optional
-    private String getMiddleName() { return middleLegalEditTxt.getText().toString(); }
-
-    private String getLastLegalName() { return lastLegalNameEditTxt.getText().toString(); }
+    private String getLastLegalName() {
+        return lastLegalNameEditTxt.getText().toString().trim();
+    }
 
     private String getEmail() {
         return emailEditTxt.getText().toString().trim();
@@ -85,17 +105,34 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         return medicareNumberTxt.getText().toString();
     }
 
-    public String getPhoneNumber() {
-        return phoneNumberTxt.getText().toString();
+    public String getBloodType() {
+        return bloodTypeEditTxt.getText().toString();
     }
 
-    private void createAccount (String email, final String password, String confirmPassword) {
-        if(getFirstLegalName().isEmpty()) {
+    public String getHeight() {
+        return heightEditTxt.getText().toString();
+    }
+
+    public String getWeight() {
+        return weightEditTxt.getText().toString();
+    }
+
+    public String getAge() {
+        return ageEditTxt.getText().toString();
+    }
+
+    public String getGenderRg() {
+        RadioButton genderRadioBtn = findViewById(genderRg.getCheckedRadioButtonId());
+        return genderRadioBtn.getText().toString().trim();
+    }
+
+    private void createAccount (String firstLegalName, String lastLegalName, String email, String password, String confirmPassword, String medicareNumber) {
+        if(firstLegalName.isEmpty()) {
             firstLegalNameEditTxt.setError("First Legal Name Is Required!");
             firstLegalNameEditTxt.requestFocus();
             return;
         }
-        if(getLastLegalName().isEmpty()) {
+        if(lastLegalName.isEmpty()) {
             lastLegalNameEditTxt.setError("Last Legal Name Is Required!");
             lastLegalNameEditTxt.requestFocus();
             return;
@@ -120,23 +157,49 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             confirmPasswordEditTxt.requestFocus();
             return;
         }
-        if (getMedicareNumber().isEmpty()) {
+        if (medicareNumber.isEmpty()) {
             medicareNumberTxt.setError("Medicare Number Is Required");
             medicareNumberTxt.requestFocus();
             return;
         }
-        if (getPhoneNumber().isEmpty()) {
-            phoneNumberTxt.setError("Phone Number Is Required");
-            phoneNumberTxt.requestFocus();
-            return;
-        }
+
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
-                    Intent intent =new Intent(PatientRegistrationActivity.this, PatientActivity.class);
-                    startActivity(intent);
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    assert currentUser != null;
+                    String uid = currentUser.getUid();
+                    DatabaseReference childRef = mDatabase.child("patients").child(uid);
+
+                    HashMap userMap = new HashMap();
+                    userMap.put( "firstName", getFirstLegalName() );
+                    userMap.put( "lastName", getLastLegalName() );
+                    userMap.put( "gender", getGenderRg() );
+                    userMap.put( "age", getAge() );
+                    userMap.put( "height", getHeight() );
+                    userMap.put( "weight", getWeight() );
+                    userMap.put( "bloodType", getBloodType() );
+                    userMap.put( "medicareNumber", getMedicareNumber());
+
+                    childRef.updateChildren(userMap).addOnCompleteListener( new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
+                                startActivity( new Intent( PatientRegistrationActivity.this, PatientActivity.class ) );
+                                finish();
+                            } else {
+                                String message = task.getException().getMessage();
+                                Toast.makeText( getApplicationContext(), "Oh no! Something went wrong OWO.\n" + message, Toast.LENGTH_SHORT ).show();
+                            }
+                        }
+                    } );
+
+                    // Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
+                    // startActivity(new Intent(PatientRegistrationActivity.this, PatientActivity.class));
+                    // finish();
                 } else if(task.getException() instanceof FirebaseAuthUserCollisionException) { // Check if account is already in used
                     Toast.makeText(PatientRegistrationActivity.this, "Account Already Existed!", Toast.LENGTH_SHORT ).show();
                 }

@@ -1,9 +1,7 @@
 package com.example.myapplication;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -16,8 +14,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class PatientLoginActivity extends AppCompatActivity {
 
@@ -26,7 +30,6 @@ public class PatientLoginActivity extends AppCompatActivity {
     private EditText emailEditTxt, passwordEditTxt;
     private Button loginBtn;
     private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +58,11 @@ public class PatientLoginActivity extends AppCompatActivity {
         emailEditTxt = findViewById(R.id.emailEditTxt);
         passwordEditTxt = findViewById(R.id.passwordEditTxt);
         loginBtn = findViewById(R.id.loginBtn);
-        registerTxt = findViewById(R.id.registerTxt);
+        registerTxt = findViewById(R.id.alreadyRegisterTxt);
     }
 
     private String getEmail() {
-        return emailEditTxt.getText().toString();
+        return emailEditTxt.getText().toString().trim();
     }
 
     private String getPassword() {
