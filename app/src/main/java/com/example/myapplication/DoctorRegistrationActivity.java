@@ -70,4 +70,44 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
     }
 
     // do doctor register function here
+
+    private void createAccount(String staffNumber, String specialty, String firstLegalName, String lastLegalName, String password, String confirmPassword){
+        if(staffNumber.isEmpty()){
+            staffNumberEditTxt.setError("Staff Number Is Required!");
+            staffNumberEditTxt.requestFocus();
+            return;
+        }
+        if(specialty.isEmpty()){
+            specialtyEditTxt.setError("Specialty Is Required");
+            specialtyEditTxt.requestFocus();
+            return;
+        }
+        if(firstLegalName.isEmpty()){
+            firstLegalNameEditTxt.setError("First Legal Name Is Required");
+            firstLegalNameEditTxt.requestFocus();
+            return;
+        }
+        if(specialty.isEmpty()){
+            lastLegalNameEditTxt.setError("Last Legal Name Is Required");
+            lastLegalNameEditTxt.requestFocus();
+            return;
+        }
+        if(password.isEmpty()){
+            passwordEditTxt.setError("Password Is Required");
+            passwordEditTxt.requestFocus();
+            return;
+        }
+        if(password.length() <=7 ){
+            passwordEditTxt.setError("Password Must Have At Least 8 Characters");
+            passwordEditTxt.requestFocus();
+            return;
+        }
+        if(!password.equals(confirmPassword)){
+            confirmPasswordEditTxt.setError("Password Does Not Match!");
+            confirmPasswordEditTxt.requestFocus();
+            return;
+        }
+
+    };
+
 }
