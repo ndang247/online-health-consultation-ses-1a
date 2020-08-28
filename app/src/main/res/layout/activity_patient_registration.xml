@@ -1,127 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_and_registration_background">
-
+    android:background="@drawable/app_background"
+    tools:context=".PatientRegistrationActivity">
 
     <ImageView
-        android:id="@+id/heartIcon"
+        android:id="@+id/imageView"
         android:layout_width="200dp"
-        android:layout_height="230dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/heart_icon" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/heartIcon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/create_a_new_account_txt"
-        android:textColor="#82B1FF"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:typeface="normal" />
-
-    <EditText
-    android:id="@+id/firstLegalNameEditTxt"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/textView1"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="10dp"
-    android:background="#11000000"
-    android:ems="10"
-    android:hint="@string/first_legal_name_edit_txt"
-    android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/middleNameEditTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/firstLegalNameEditTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:hint="@string/middle_name_edit_txt"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/lastLegalNameEditTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/middleNameEditTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:hint="@string/last_legal_name_edit_txt"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/emailEditTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lastLegalNameEditTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:hint="@string/email_edit_txt"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/passwordEditTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/emailEditTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:hint="@string/password_edit_txt"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/confirmPasswordEditTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordEditTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:hint="@string/confirm_password_edit_txt"
-        android:inputType="textPassword" />
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/heart_icon" />
 
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/confirmPasswordEditTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:width="200dp"
-        android:background="@color/colorAccent"
-        android:fontFamily="sans-serif"
-        android:text="@string/register_here_txt"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+        android:layout_marginBottom="150dp"
+        android:text="Register Here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/firstLegalNameEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/registerBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/already_have_an_account_txt"
-        android:textColor="#FF8A80" />
-</RelativeLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="8"
+        android:hint="First Legal Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <EditText
+        android:id="@+id/lastLegalNameEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="8"
+        android:hint="Last Legal Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/firstLegalNameEditTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <EditText
+        android:id="@+id/medicareNumberTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="8"
+        android:hint="Medicare Number"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/emailEditTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastLegalNameEditTxt" />
+
+    <EditText
+        android:id="@+id/passwordEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"
+        android:ems="8"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bloodTypeEditTxt" />
+
+    <EditText
+        android:id="@+id/emailEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="8"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstLegalNameEditTxt" />
+
+    <EditText
+        android:id="@+id/confirmPasswordEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="8"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTxt" />
+
+    <TextView
+        android:id="@+id/genderTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Gender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/ageEditTxt"
+        app:layout_constraintTop_toBottomOf="@+id/weightEditTxt" />
+
+    <RadioGroup
+        android:id="@+id/genderRg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/genderTxt"
+        app:layout_constraintStart_toStartOf="@+id/genderTxt"
+        app:layout_constraintTop_toBottomOf="@+id/genderTxt">
+
+        <RadioButton
+            android:id="@+id/maleRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/femaleRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+
+        <RadioButton
+            android:id="@+id/otherRb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Other" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/alreadyRegisteredTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <EditText
+        android:id="@+id/bloodTypeEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="8"
+        android:hint="Blood Type"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditTxt" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Height"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordEditTxt"
+        app:layout_constraintStart_toEndOf="@+id/passwordEditTxt"
+        app:layout_constraintTop_toTopOf="@+id/passwordEditTxt" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Weight"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Spinner
+        android:id="@+id/heightSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:entries="@array/height_unit"
+        app:layout_constraintBottom_toBottomOf="@+id/heightEditTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/heightEditTxt"
+        app:layout_constraintTop_toTopOf="@+id/heightEditTxt"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/weightSpinner"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:entries="@array/weight_unit"
+        app:layout_constraintBottom_toBottomOf="@+id/weightEditTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/weightEditTxt"
+        app:layout_constraintTop_toTopOf="@+id/weightEditTxt"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/heightEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="2"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/weightEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="2"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/ageEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="2"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/ageTxt"
+        app:layout_constraintStart_toEndOf="@+id/ageTxt"
+        app:layout_constraintTop_toTopOf="@+id/ageTxt"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/ageTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Age"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditTxt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
