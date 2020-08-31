@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class DoctorRegistrationActivity extends AppCompatActivity {
 
     private EditText staffNumberEditTxt, emailEditTxt, firstLegalNameEditTxt, lastLegalNameEditTxt,
-            passwordEditTxt, confirmPasswordEditTxt, ageEditTxt, specialtyEditTxt, phoneNumber;
+            passwordEditTxt, confirmPasswordEditTxt, ageEditTxt, specialtyEditTxt, phoneNumberEditTxt;
     private RadioGroup genderRg;
     private Spinner clinicSpinner;
     private Button registerBtn;
@@ -46,15 +46,16 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
 
         initViews();
 
-        // initialise Firebase Auth
+        // Initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // get an instance then a reference of the database
+        // Get an instance then a reference of the database
         mDatabase = FirebaseDatabase.getInstance().getReference("doctors");
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAccount(getStaffNumber(), getEmail(), getFirstLegalName(), getLastLegalName(), getPassword(), getConfirmPassword(), getSpecialty());
+                createAccount(getStaffNumber(), getEmail(), getFirstLegalName(), getLastLegalName(),
+                        getPassword(), getConfirmPassword(), getGenderRg(), getSpecialty());
             }
         });
 
@@ -79,7 +80,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
         specialtyEditTxt = findViewById(R.id.specialtyEditTxt);
         clinicSpinner = findViewById(R.id.clinicSpinner);
         registerBtn = findViewById(R.id.registerBtn);
-        phoneNumber = findViewById(R.id.phoneNumberEditTxt);
+        phoneNumberEditTxt = findViewById(R.id.phoneNumberEditTxt);
         alreadyRegisterTxt = findViewById(R.id.alreadyRegisterTxt);
     }
 
@@ -112,7 +113,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
         return genderRadioBtn.getText().toString().trim();
     }
 
-    public String getAgeEditTxt() {
+    public String getAge() {
         return ageEditTxt.getText().toString();
     }
 
@@ -123,13 +124,13 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
     // Get clinic name here
 
     public String getPhoneNumber() {
-        return phoneNumber.getText().toString();
+        return phoneNumberEditTxt.getText().toString();
     }
 
 
     // Do doctor registration function here
 
-    private void createAccount(String staffNumber, String email, String firstLegalName, String lastLegalName, String password, String confirmPassword, String specialty){
+    private void createAccount(String staffNumber, String email, String firstLegalName, String lastLegalName, String password, String confirmPassword, String gender, String specialty){
         if (staffNumber.isEmpty()){
             staffNumberEditTxt.setError("Staff Number Is Required!");
             staffNumberEditTxt.requestFocus();
@@ -186,13 +187,24 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                     String uid = currentUser.getUid();
                     DatabaseReference childRef = mDatabase.child(uid);
 
+                    /*Doctor doctor = new Doctor(getStaffNumber(), getFirstLegalName(), getLastLegalName(),
+                            getPassword(), getGenderRg(), getAge(), getSpecialty(), "Sydney", getPhoneNumber());
+                    childRef.setValue(doctor);
+
+                    Toast.makeText(DoctorRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
+                    startActivity( new Intent( DoctorRegistrationActivity.this, DoctorActivity.class ) );
+                    finish();*/
+
                     HashMap userMap = new HashMap();
                     userMap.put( "staffNumber", getStaffNumber() );
                     userMap.put( "fistName", getFirstLegalName() );
                     userMap.put( "lastName", getLastLegalName() );
+                    userMap.put( "password", getPassword() );
                     userMap.put( "gender", getGenderRg() );
+                    userMap.put( "age", getAge() );
                     userMap.put( "specialty", getSpecialty() );
-                    // Add clinic to db as well
+                    // Add clinic here
+                    userMap.put( "phoneNumber", getPhoneNumber() );
 
                     childRef.updateChildren(userMap).addOnCompleteListener( new OnCompleteListener() {
                         @Override
@@ -206,13 +218,11 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                                 Toast.makeText( getApplicationContext(), "Oh no! Something went wrong!" + message, Toast.LENGTH_SHORT ).show();
                             }
                         }
-                    } );
+                    });
                 } else if(task.getException() instanceof FirebaseAuthUserCollisionException) { // Check if account is already in used
                     Toast.makeText(DoctorRegistrationActivity.this, "Account Already Existed!", Toast.LENGTH_SHORT ).show();
                 }
             }
         });
-
     };
-
 }

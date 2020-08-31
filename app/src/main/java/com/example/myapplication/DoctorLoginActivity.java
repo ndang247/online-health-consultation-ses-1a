@@ -39,9 +39,9 @@ public class DoctorLoginActivity extends AppCompatActivity {
 
         initViews();
 
-        // initialise Firebase Auth
+        // Initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // get an instance then a reference of the database
+        // Get an instance then a reference of the database
         mDatabase = FirebaseDatabase.getInstance().getReference("doctors");
 
         loginAsDoctorBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class DoctorLoginActivity extends AppCompatActivity {
         loginAsDoctorBtn = findViewById(R.id.loginAsDoctorBtn);
         createNewAccTxt = findViewById(R.id.createNewAccTxt);
     }
-    // Check staff ID in another activity
+
     public String getStaffID() { return staffIDEditTxt.getText().toString(); }
 
     public String getEmail() {
