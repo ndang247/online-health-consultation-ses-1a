@@ -13,7 +13,7 @@
     <string name="login_password_edit_txt">Password :</string>
     <string name="register_here_txt">Register Here</string>
     <string name="log_out_btn_txt">Log Out</string>
-    <string name="sign_in_options_txt">Sign In or Sign Up Options Below</string>
+    <string name="sign_in_options_txt">Sign In Options Below</string>
     <string name="login_as_patient_btn">Login as patient</string>
     <string name="login_as_doctor_btn">Login as doctor</string>
     <string name="lets_get_started_btn">Lets Get Started</string>

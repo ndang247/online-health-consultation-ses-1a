@@ -59,7 +59,7 @@
         android:layout_marginTop="30dp"
         android:width="200dp"
         android:background="@color/colorAccent"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/bungee"
         android:text="@string/login_as_patient_btn"
         android:textColor="#fff"
         android:textSize="18sp" />
@@ -72,6 +72,7 @@
         android:layout_below="@+id/loginBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:fontFamily="@font/bungee"
         android:text="@string/register_here_txt" />
 
 </RelativeLayout>
