@@ -10,7 +10,7 @@
         android:id="@+id/menuSloganTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Slogan Name"
+        android:text="A Healthier You"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"/>
 
@@ -25,18 +25,10 @@
         android:textColor="@color/black"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/heart_icon"
-        android:layout_above="@+id/menuLogoNameTxt"/>
-
-    <ImageView
         android:layout_width="160dp"
         android:layout_height="175dp"
         android:src="@drawable/heart_icon"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"/>
-
-
 
 </RelativeLayout>
