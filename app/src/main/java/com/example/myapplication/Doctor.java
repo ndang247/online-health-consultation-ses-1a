@@ -12,6 +12,10 @@ public class Doctor {
     private String clinicName;
     private String phoneNumber;
 
+    public Doctor() {
+
+    }
+
     public Doctor(String staffNumber, String email, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
         this.staffNumber = staffNumber;
         this.email = email;
