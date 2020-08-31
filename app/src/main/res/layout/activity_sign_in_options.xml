@@ -21,28 +21,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/loginAsPatientBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:fontFamily="@font/bungee"
         android:text="@string/login_as_patient_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
     <Button
         android:id="@+id/loginAsDoctorBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/bungee"
         android:text="@string/login_as_doctor_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginAsPatientBtn"
-        android:layout_marginTop="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/loginAsPatientBtn" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleSignInBtn"
@@ -50,11 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginAsDoctorBtn"
-        android:layout_marginTop="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/loginAsDoctorBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
