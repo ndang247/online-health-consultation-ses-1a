@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".receive_layout"></activity>
+        <activity android:name=".send_layout" />
+        <activity android:name=".chat" />
         <activity android:name=".PatientActivity" />
         <activity android:name=".DoctorRegistrationActivity" />
         <activity android:name=".DoctorLoginActivity" />
