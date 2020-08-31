@@ -93,7 +93,7 @@ public class PatientLoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(PatientLoginActivity.this, "Account Not Exists, Please Register First!", Toast.LENGTH_LONG ).show();
+                    Toast.makeText(PatientLoginActivity.this, "Account Does Not Exist, Please Register First!", Toast.LENGTH_LONG ).show();
                 }
             }
         });
