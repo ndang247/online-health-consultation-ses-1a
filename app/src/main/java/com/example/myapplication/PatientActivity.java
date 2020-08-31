@@ -50,7 +50,7 @@ public class PatientActivity extends AppCompatActivity {
                 height.setText(snapshot.child("height").getValue(String.class));
                 weight.setText(snapshot.child("weight").getValue(String.class));
                 bloodType.setText(snapshot.child("bloodType").getValue(String.class));
-                medicare.setText(snapshot.child("medicare").getValue(String.class));
+                medicare.setText(snapshot.child("medicareNumber").getValue(String.class));
             }
 
             @Override

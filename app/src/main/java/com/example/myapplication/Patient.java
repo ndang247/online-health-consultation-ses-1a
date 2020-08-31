@@ -5,12 +5,11 @@ import android.content.pm.PackageItemInfo;
 public class Patient {
     private String firstLegalName;
     private String lastLegalName;
-    private String email;
     private String password;
     private String gender;
-    private String age;
-    private String height;
-    private String weight;
+    private String age; // Not required
+    private String height; // Not required
+    private String weight; // Not required
     private String bloodType;
     private String medicareNumber;
 
@@ -18,10 +17,9 @@ public class Patient {
 
     }
 
-    public Patient(String firstLegalName, String lastLegalName, String email, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber) {
+    public Patient(String firstLegalName, String lastLegalName, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber) {
         this.firstLegalName = firstLegalName;
         this.lastLegalName = lastLegalName;
-        this.email = email;
         this.password = password;
         this.gender = gender;
         this.age = age;
@@ -45,14 +43,6 @@ public class Patient {
 
     public void setLastLegalName(String lastLegalName) {
         this.lastLegalName = lastLegalName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {

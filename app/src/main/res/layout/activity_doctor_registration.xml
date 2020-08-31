@@ -92,7 +92,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:ems="8"
-        android:hint="@string/confirm_password_edit_txt"
+        android:hint="@string/password_edit_txt"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstLegalNameEditTxt" />
