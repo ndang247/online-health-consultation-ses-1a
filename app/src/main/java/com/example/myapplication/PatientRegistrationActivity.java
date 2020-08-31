@@ -168,6 +168,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             medicareNumberTxt.requestFocus();
             return;
         }
+        // check if medicare is 12 number here
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -203,9 +204,6 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                         }
                     } );
 
-                    // Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
-                    // startActivity(new Intent(PatientRegistrationActivity.this, PatientActivity.class));
-                    // finish();
                 } else if(task.getException() instanceof FirebaseAuthUserCollisionException) { // Check if account is already in used
                     Toast.makeText(PatientRegistrationActivity.this, "Account Already Existed!", Toast.LENGTH_SHORT ).show();
                 }
