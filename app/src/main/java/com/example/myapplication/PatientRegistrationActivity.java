@@ -168,6 +168,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             medicareNumberTxt.requestFocus();
             return;
         }
+        // check if medicare is 12 number here
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
