@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 public class Doctor {
     private String staffNumber;
+    private String email;
     private String firstLegalName;
     private String lastLegalName;
     private String password;
@@ -11,8 +12,9 @@ public class Doctor {
     private String clinicName;
     private String phoneNumber;
 
-    public Doctor(String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
+    public Doctor(String staffNumber, String email, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
         this.staffNumber = staffNumber;
+        this.email = email;
         this.firstLegalName = firstLegalName;
         this.lastLegalName = lastLegalName;
         this.password = password;
@@ -30,6 +32,10 @@ public class Doctor {
     public void setStaffNumber(String staffNumber) {
         this.staffNumber = staffNumber;
     }
+
+    public String getEmail() {return email;}
+
+    public void setEmail(String email){this.email = email;}
 
     public String getFirstLegalName() {
         return firstLegalName;
