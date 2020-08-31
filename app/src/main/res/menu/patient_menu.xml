@@ -24,7 +24,7 @@
             android:title="Search"/>
         <item
             android:id="@+id/nav_doctor_location"
-            android:title="Doctor Location"/>
+            android:title="Doctor's Location"/>
         <item
             android:id="@+id/nav_setting"
             android:title="Setting"/>
