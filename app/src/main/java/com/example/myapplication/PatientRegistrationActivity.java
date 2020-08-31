@@ -199,7 +199,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                                 finish();
                             } else {
                                 String message = task.getException().getMessage();
-                                Toast.makeText( getApplicationContext(), "Oh no! Something went wrong OWO.\n" + message, Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( getApplicationContext(), "Oh no! Something went wrong!" + message, Toast.LENGTH_SHORT ).show();
                             }
                         }
                     } );

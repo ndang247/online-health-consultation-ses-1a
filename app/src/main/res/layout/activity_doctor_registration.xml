@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/genderRg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -67,24 +67,23 @@
         android:id="@+id/ageTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Age"
         app:layout_constraintBottom_toBottomOf="@+id/ageEditTxt"
         app:layout_constraintEnd_toEndOf="@+id/genderTxt"
         app:layout_constraintStart_toStartOf="@+id/genderTxt"
         app:layout_constraintTop_toTopOf="@+id/ageEditTxt"
-        app:layout_constraintVertical_bias="0.0"
         tools:text="@string/age_txt" />
 
     <EditText
         android:id="@+id/ageEditTxt"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:ems="3"
+        android:ems="5"
         android:hint="@string/age_edit_txt"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintStart_toStartOf="@+id/genderRg"
+        app:layout_constraintTop_toBottomOf="@+id/genderRg" />
 
     <EditText
         android:id="@+id/passwordEditTxt"
@@ -118,10 +117,10 @@
         android:id="@+id/clinicTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="Clinic"
-        app:layout_constraintEnd_toEndOf="@+id/ageTxt"
-        app:layout_constraintStart_toStartOf="@+id/ageTxt"
+        app:layout_constraintEnd_toEndOf="@+id/genderTxt"
+        app:layout_constraintStart_toStartOf="@+id/genderTxt"
         app:layout_constraintTop_toBottomOf="@+id/ageTxt" />
 
     <Spinner
@@ -139,20 +138,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gender"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintBottom_toBottomOf="@+id/genderRg"
+        app:layout_constraintEnd_toStartOf="@+id/genderRg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="@+id/genderRg" />
 
     <EditText
         android:id="@+id/phoneNumberEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
+        android:ems="8"
         android:hint="@string/phone_number_edit_txt"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTxt" />
 
@@ -196,6 +195,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="160dp"
+        android:fontFamily="@font/bungee"
         android:text="@string/register_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -205,10 +205,27 @@
         android:id="@+id/alreadyRegisterTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
         android:text="@string/already_have_an_account_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
+
+    <EditText
+        android:id="@+id/emailEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="8"
+        android:hint="@string/email_edit_txt"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/genderRg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumberEditTxt"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditTxt"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
