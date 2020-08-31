@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,33 +14,36 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class PatientLoginActivity extends AppCompatActivity {
 
     private static String TAG = "LoginActivity";
     private TextView registerTxt;
-    private EditText emailEditTxt, passwordEditTxt;
+    private EditText medicareNumberEditTxt, emailEditTxt, passwordEditTxt;
     private Button loginBtn;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private String medicareNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_patient_login);
         // initialise views
         initViews();
+        // initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        // get an instance then a reference of the database
+        mDatabase = FirebaseDatabase.getInstance().getReference("patients");
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                signIn(getEmail(), getPassword());
             }
         });
 
@@ -55,10 +57,15 @@ public class PatientLoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        medicareNumberEditTxt = findViewById(R.id.medicareNumberEditTxt);
         emailEditTxt = findViewById(R.id.emailEditTxt);
         passwordEditTxt = findViewById(R.id.passwordEditTxt);
         loginBtn = findViewById(R.id.loginBtn);
         registerTxt = findViewById(R.id.alreadyRegisterTxt);
+    }
+
+    public String getMedicareNumber() {
+        return medicareNumberEditTxt.getText().toString();
     }
 
     private String getEmail() {
@@ -69,13 +76,18 @@ public class PatientLoginActivity extends AppCompatActivity {
         return passwordEditTxt.getText().toString();
     }
 
-    private void signIn() {
-        if (getEmail().isEmpty()) {
+    private void signIn(String email, String password) {
+        if (getMedicareNumber().isEmpty()) {
+            medicareNumberEditTxt.setError("Medicare Number Is Required!");
+            medicareNumberEditTxt.requestFocus();
+            return;
+        }
+        if (email.isEmpty()) {
             emailEditTxt.setError("Email Is Required!");
             emailEditTxt.requestFocus();
             return;
         }
-        if (getPassword().isEmpty()) {
+        if (password.isEmpty()) {
             passwordEditTxt.setError("Password Is Required!");
             passwordEditTxt.requestFocus();
             return;
@@ -85,15 +97,36 @@ public class PatientLoginActivity extends AppCompatActivity {
             emailEditTxt.requestFocus();
             return;
         }
-        mAuth.signInWithEmailAndPassword(getEmail(), getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(PatientLoginActivity.this, PatientActivity.class);
-                    startActivity(intent);
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    assert currentUser != null;
+                    String uid = currentUser.getUid();
+                    DatabaseReference childRef = mDatabase.child(uid);
+
+                    childRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            medicareNumber = snapshot.child("medicareNumber").getValue(String.class);
+                            assert medicareNumber != null;
+                            if (medicareNumber.equals(getMedicareNumber())) {
+                                Intent intent = new Intent(PatientLoginActivity.this, PatientActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                medicareNumberEditTxt.setError("Incorrect Medicare Number!");
+                                medicareNumberEditTxt.requestFocus();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
                 }
                 else {
-                    Toast.makeText(PatientLoginActivity.this, "Account Not Exists, Please Register First!", Toast.LENGTH_LONG ).show();
+                    Toast.makeText(PatientLoginActivity.this, "Account Does Not Exist, Please Register First!", Toast.LENGTH_LONG ).show();
                 }
             }
         });

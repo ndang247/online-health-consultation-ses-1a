@@ -20,14 +20,11 @@
             android:id="@+id/nav_messages"
             android:title="Messages"/>
         <item
-            android:id="@+id/nav_contacts"
-            android:title="Contacts"/>
-        <item
             android:id="@+id/nav_search"
             android:title="Search"/>
         <item
-            android:id="@+id/nav_doctor_location"
-            android:title="Doctor's Location"/>
+            android:id="@+id/nav_contacts"
+            android:title="Contacts"/>
         <item
             android:id="@+id/nav_setting"
             android:title="Setting"/>

@@ -6,10 +6,14 @@ public class Doctor {
     private String lastLegalName;
     private String password;
     private String gender;
-    private String age;
+    private String age; // Not Required
     private String specialty;
     private String clinicName;
-    private String phoneNumber;
+    private String phoneNumber; // Not Required
+
+    public Doctor() {
+
+    }
 
     public Doctor(String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
         this.staffNumber = staffNumber;
@@ -93,20 +97,5 @@ public class Doctor {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Doctor{" +
-                "staffNumber='" + staffNumber + '\'' +
-                ", firstLegalName='" + firstLegalName + '\'' +
-                ", lastLegalName='" + lastLegalName + '\'' +
-                ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age='" + age + '\'' +
-                ", specialty='" + specialty + '\'' +
-                ", clinicName='" + clinicName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
     }
 }

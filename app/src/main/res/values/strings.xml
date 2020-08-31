@@ -38,7 +38,7 @@
     <string name="self_introduce_txt">Self Introduce</string>
     <string name="self_introduce_edit_txt">Bla bla bla bla</string>
     <string name="update_btn">Update</string>
-    <string name="patient_name_txt">Jack Daniels</string>
+    <string name="patient_name_txt">Welcome</string>
     <string name="title_txt">Student</string>
     <string name="booking_status_txt">Yes</string>
     <string name="current_bookings_status_txt">Current Bookings Status</string>
@@ -49,6 +49,29 @@
     <string name="blood_type_edit_txt">O</string>
     <string name="height_txt">Height</string>
     <string name="weight_txt">Weight</string>
+    <string name="profile_first_name_label">First Name</string>
+    <string name="profile_first_name_txt" />
+    <string name="profile_last_name_label">Last Name</string>
+    <string name="profile_last_name_txt" />
+    <string name="profile_gender_label">Gender</string>
+    <string name="profile_gender_txt" />
+    <string name="profile_age_label">Age</string>
+    <string name="profile_age_txt" />
+    <string name="profile_height_label">Height</string>
+    <string name="profile_height_txt" />
+    <string name="profile_weight_label">Weight</string>
+    <string name="profile_weight_txt" />
+    <string name="profile_blood_type_label">Blood Type</string>
+    <string name="profile_blood_type_txt" />
+    <string name="profile_medicare_label">Medicare</string>
+    <string name="profile_medicare_txt" />
+    <string name="profile_staff_number_label">Staff Number</string>
+    <string name="profile_staff_number_txt" />
+    <string name="profile_doctor_full_name_txt" />
+    <string name="profile_specialty_label">Specialty</string>
+    <string name="profile_specialty_txt" />
+    <string name="profile_clinic_name_label">Clinic Name</string>
+    <string name="profile_clinic_name_txt" />
 
     <array name="height_unit">
         <item>Cm</item>
