@@ -1,26 +1,34 @@
 package com.example.myapplication;
 
 public class Doctor {
+    private String staffNumber;
     private String firstLegalName;
     private String lastLegalName;
+    private String password;
     private String gender;
     private String age;
     private String specialty;
     private String clinicName;
-    private String clinicNumber;
-    private String clinicEmail;
     private String phoneNumber;
 
-    public Doctor(String firstLegalName, String lastLegalName, String gender, String age, String specialty, String clinicName, String clinicNumber, String clinicEmail, String phoneNumber) {
+    public Doctor(String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
+        this.staffNumber = staffNumber;
         this.firstLegalName = firstLegalName;
         this.lastLegalName = lastLegalName;
+        this.password = password;
         this.gender = gender;
         this.age = age;
         this.specialty = specialty;
         this.clinicName = clinicName;
-        this.clinicNumber = clinicNumber;
-        this.clinicEmail = clinicEmail;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getStaffNumber() {
+        return staffNumber;
+    }
+
+    public void setStaffNumber(String staffNumber) {
+        this.staffNumber = staffNumber;
     }
 
     public String getFirstLegalName() {
@@ -37,6 +45,14 @@ public class Doctor {
 
     public void setLastLegalName(String lastLegalName) {
         this.lastLegalName = lastLegalName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getGender() {
@@ -71,22 +87,6 @@ public class Doctor {
         this.clinicName = clinicName;
     }
 
-    public String getClinicNumber() {
-        return clinicNumber;
-    }
-
-    public void setClinicNumber(String clinicNumber) {
-        this.clinicNumber = clinicNumber;
-    }
-
-    public String getClinicEmail() {
-        return clinicEmail;
-    }
-
-    public void setClinicEmail(String clinicEmail) {
-        this.clinicEmail = clinicEmail;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -98,14 +98,14 @@ public class Doctor {
     @Override
     public String toString() {
         return "Doctor{" +
-                "firstLegalName='" + firstLegalName + '\'' +
+                "staffNumber='" + staffNumber + '\'' +
+                ", firstLegalName='" + firstLegalName + '\'' +
                 ", lastLegalName='" + lastLegalName + '\'' +
+                ", password='" + password + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age='" + age + '\'' +
                 ", specialty='" + specialty + '\'' +
                 ", clinicName='" + clinicName + '\'' +
-                ", clinicNumber='" + clinicNumber + '\'' +
-                ", clinicEmail='" + clinicEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
