@@ -30,7 +30,7 @@ import java.util.Objects;
 public class PatientRegistrationActivity extends AppCompatActivity {
 
     private EditText firstLegalNameEditTxt, lastLegalNameEditTxt, passwordEditTxt, confirmPasswordEditTxt,
-            ageEditTxt, heightEditTxt, weightEditTxt, bloodTypeEditTxt, medicareNumberTxt, emailEditTxt;
+            ageEditTxt, heightEditTxt, weightEditTxt, bloodTypeEditTxt, medicareNumberEditTxt, emailEditTxt;
 
     private RadioGroup genderRg;
     private TextView alreadyRegisteredTxt;
@@ -76,7 +76,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         heightEditTxt = findViewById(R.id.heightEditTxt);
         weightEditTxt = findViewById(R.id.weightEditTxt);
         bloodTypeEditTxt = findViewById(R.id.bloodTypeEditTxt);
-        medicareNumberTxt = findViewById(R.id.medicareNumberTxt);
+        medicareNumberEditTxt = findViewById(R.id.medicareNumberTxt);
         registerBtn = findViewById(R.id.registerBtn);
         alreadyRegisteredTxt = findViewById(R.id.alreadyRegisteredTxt);
     }
@@ -102,7 +102,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
     }
 
     public String getMedicareNumber() {
-        return medicareNumberTxt.getText().toString();
+        return medicareNumberEditTxt.getText().toString();
     }
 
     public String getBloodType() {
@@ -169,14 +169,14 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             return;
         }
         if (medicareNumber.isEmpty()) {
-            medicareNumberTxt.setError("Medicare Number Is Required");
-            medicareNumberTxt.requestFocus();
+            medicareNumberEditTxt.setError("Medicare Number Is Required");
+            medicareNumberEditTxt.requestFocus();
             return;
         }
         // Check if medicare is 12 number here
         if (medicareNumber.length() != 12) {
-            medicareNumberTxt.setError("Medicare should be 12 digit!");
-            medicareNumberTxt.requestFocus();
+            medicareNumberEditTxt.setError("Medicare should be 12 digit!");
+            medicareNumberEditTxt.requestFocus();
             return;
         }
 
