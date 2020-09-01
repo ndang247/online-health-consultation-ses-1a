@@ -173,7 +173,11 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             medicareNumberTxt.requestFocus();
             return;
         }
-
+        if (medicareNumber.length() != 12) {
+            medicareNumberTxt.setError("Medicare should be 12 digit!");
+            medicareNumberTxt.requestFocus();
+            return;
+        }
         // Check if medicare is 12 number here
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
