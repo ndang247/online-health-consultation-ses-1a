@@ -55,7 +55,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createAccount(getStaffNumber(), getEmail(), getFirstLegalName(), getLastLegalName(),
-                        getPassword(), getConfirmPassword(), getGenderRg(), getSpecialty());
+                        getPassword(), getConfirmPassword(), getGenderRg(), getSpecialty(), getClinicName());
             }
         });
 
@@ -122,15 +122,19 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
     }
 
     // Get clinic name here
+    public String getClinicName () {
+        return clinicSpinner.getSelectedItem().toString();
+    }
 
     public String getPhoneNumber() {
         return phoneNumberEditTxt.getText().toString();
     }
 
-
     // Do doctor registration function here
 
-    private void createAccount(String staffNumber, String email, String firstLegalName, String lastLegalName, String password, String confirmPassword, String gender, String specialty){
+    private void createAccount(String staffNumber, String email, String firstLegalName, String lastLegalName,
+                               String password, String confirmPassword,
+                               String gender, String specialty, String clinicName){
         if (staffNumber.isEmpty()){
             staffNumberEditTxt.setError("Staff Number Is Required!");
             staffNumberEditTxt.requestFocus();
@@ -203,7 +207,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                     userMap.put( "gender", getGenderRg() );
                     userMap.put( "age", getAge() );
                     userMap.put( "specialty", getSpecialty() );
-                    // Add clinic here
+                    userMap.put( "clinicName", getClinicName() );
                     userMap.put( "phoneNumber", getPhoneNumber() );
 
                     childRef.updateChildren(userMap).addOnCompleteListener( new OnCompleteListener() {
