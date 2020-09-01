@@ -175,7 +175,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/profile_specialty_label"
+                android:text="@string/profile_age_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -187,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="@string/profile_specialty_txt" />
+                android:text="@string/profile_age_txt" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -204,6 +204,35 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/profile_specialty_label"
+                app:drawableLeftCompat="@drawable/ic_action_age"
+                app:drawableStartCompat="@drawable/ic_action_age"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/specialty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/profile_specialty_txt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/fullName"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/lightWhite"
+            android:elevation="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/profile_clinic_name_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
@@ -211,7 +240,7 @@
                 android:layout_marginLeft="15dp" />
 
             <TextView
-                android:id="@+id/height"
+                android:id="@+id/clinicName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -225,7 +254,36 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="460dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/lightWhite"
+            android:elevation="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_phone_number_label"
+                app:drawableLeftCompat="@drawable/ic_action_age"
+                app:drawableStartCompat="@drawable/ic_action_age"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/profile_phone_number_txt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/fullName"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="520dp"
             android:layout_marginBottom="40dp"
             android:elevation="8dp">
 
