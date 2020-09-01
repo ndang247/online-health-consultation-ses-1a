@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+
+    tools:context=".PatientLoginActivity">
+
+
+    <ImageView
+        android:id="@+id/heartIcon"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        app:srcCompat="@drawable/heart_icon" />
+
+    <EditText
+        android:id="@+id/medicareNumberEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heartIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#11000000"
+        android:drawableStart="@drawable/ic_action_user"
+        android:drawableLeft="@drawable/ic_action_user"
+        android:ems="10"
+        android:hint="@string/medicare_number_edit_txt"
+        android:inputType="number"
+        android:textSize="16sp"
+        />
+
+    <EditText
+        android:id="@+id/emailEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/medicareNumberEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#11000000"
+        android:drawableStart="@drawable/ic_action_user"
+        android:drawableLeft="@drawable/ic_action_user"
+        android:ems="10"
+        android:hint="@string/email_edit_txt"
+        android:inputType="textEmailAddress"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/passwordEditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#11000000"
+        android:drawableStart="@drawable/ic_action_password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:ems="10"
+        android:hint="@string/password_edit_txt"
+        android:inputType="textPassword"
+        android:textSize="16sp" />
+
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordEditTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:width="200dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/bungee"
+        android:text="@string/login_as_patient_btn"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/alreadyRegisterTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/bungee"
+        android:text="@string/register_here_txt" />
+
+</RelativeLayout>
