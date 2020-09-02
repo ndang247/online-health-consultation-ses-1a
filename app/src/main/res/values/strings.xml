@@ -74,6 +74,9 @@
     <string name="profile_clinic_name_txt" />
     <string name="profile_phone_number_label">Phone</string>
     <string name="profile_phone_number_txt" />
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="chat_username_txt">username</string>
 
     <array name="height_unit">
         <item>Cm</item>
@@ -96,5 +99,7 @@
         <item>NY</item>
         <item>Brookyn</item>
     </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -2,12 +2,23 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.Group;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,11 +29,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class PatientActivity extends AppCompatActivity {
+public class PatientActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView fullName, firstName, lastName, gender, age, height, weight, bloodType, medicare;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ImageView navIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +44,12 @@ public class PatientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_patient_profile);
 
         initViews();
-        // initialise Firebase Auth
+
+        navigationDrawer();
+
+        // Initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // get an instance then a reference of the database
+        // Get an instance then a reference of the database
         mDatabase = FirebaseDatabase.getInstance().getReference("patients");
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         assert currentUser != null;
@@ -60,9 +77,6 @@ public class PatientActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     private void initViews() {
         fullName = findViewById(R.id.fullName);
         firstName = findViewById(R.id.firstName);
@@ -73,7 +87,63 @@ public class PatientActivity extends AppCompatActivity {
         weight = findViewById(R.id.weight);
         bloodType = findViewById(R.id.bloodType);
         medicare = findViewById(R.id.medicare);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navView);
+        navIcon = findViewById(R.id.navIcon);
     }
 
+    // Navigation drawer functions
+    private void navigationDrawer() {
+        // Navigation drawer
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_profile);
 
+        navIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_edit_profile:
+                break;
+            case R.id.nav_messages:
+                Intent intent = new Intent(PatientActivity.this, ChatActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_contacts:
+                break;
+            case R.id.nav_search:
+                break;
+            case R.id.nav_doctor_location:
+                break;
+            case R.id.nav_setting:
+                break;
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
