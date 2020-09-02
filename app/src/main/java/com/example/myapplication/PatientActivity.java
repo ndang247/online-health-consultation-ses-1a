@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.models.Patient;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,6 +50,7 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
 
         // Initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
         // Get an instance then a reference of the database
         mDatabase = FirebaseDatabase.getInstance().getReference("patients");
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -128,8 +130,8 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_edit_profile:
                 break;
             case R.id.nav_messages:
-                Intent intent = new Intent(PatientActivity.this, ChatActivity.class);
-                startActivity(intent);
+                Intent msgIntent = new Intent(PatientActivity.this, ChatActivity.class);
+                startActivity(msgIntent);
                 break;
             case R.id.nav_contacts:
                 break;
@@ -140,8 +142,11 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_setting:
                 break;
             case R.id.nav_logout:
-                FirebaseAuth.getInstance().signOut();
-                break;
+                mAuth.signOut();
+                Intent loginIntent = new Intent(PatientActivity.this, PatientLoginActivity.class);
+                startActivity(loginIntent);
+                finish();
+                return true;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
