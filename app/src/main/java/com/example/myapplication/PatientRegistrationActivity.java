@@ -29,9 +29,8 @@ import java.util.Objects;
 
 public class PatientRegistrationActivity extends AppCompatActivity {
 
-    private EditText firstLegalNameEditTxt, lastLegalNameEditTxt,
-            bloodTypeEditTxt, heightEditTxt, weightEditTxt, ageEditTxt, medicareNumberTxt,
-            emailEditTxt, passwordEditTxt, confirmPasswordEditTxt;
+    private EditText firstLegalNameEditTxt, lastLegalNameEditTxt, passwordEditTxt, confirmPasswordEditTxt,
+            ageEditTxt, heightEditTxt, weightEditTxt, bloodTypeEditTxt, medicareNumberEditTxt, emailEditTxt;
 
     private RadioGroup genderRg;
     private TextView alreadyRegisteredTxt;
@@ -43,17 +42,17 @@ public class PatientRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_registration);
-        // initialise views
+        // Initialise views
         initViews();
-        // initialise Firebase Auth
+        // Initialise Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // get an instance then a reference of the database
+        // Get an instance then a reference of the database
         mDatabase = FirebaseDatabase.getInstance().getReference("patients");
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAccount(getFirstLegalName(), getLastLegalName(), getEmail(), getPassword(), getConfirmPassword(), getMedicareNumber());
+                createAccount(getFirstLegalName(), getLastLegalName(), getEmail(), getPassword(), getConfirmPassword(), getGenderRg(), getBloodType(), getMedicareNumber());
             }
         });
 
@@ -77,7 +76,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         heightEditTxt = findViewById(R.id.heightEditTxt);
         weightEditTxt = findViewById(R.id.weightEditTxt);
         bloodTypeEditTxt = findViewById(R.id.bloodTypeEditTxt);
-        medicareNumberTxt = findViewById(R.id.medicareNumberTxt);
+        medicareNumberEditTxt = findViewById(R.id.medicareNumberTxt);
         registerBtn = findViewById(R.id.registerBtn);
         alreadyRegisteredTxt = findViewById(R.id.alreadyRegisteredTxt);
     }
@@ -103,7 +102,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
     }
 
     public String getMedicareNumber() {
-        return medicareNumberTxt.getText().toString();
+        return medicareNumberEditTxt.getText().toString();
     }
 
     public String getBloodType() {
@@ -127,7 +126,8 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         return genderRadioBtn.getText().toString().trim();
     }
 
-    private void createAccount (String firstLegalName, String lastLegalName, String email, String password, String confirmPassword, String medicareNumber) {
+    private void createAccount (String firstLegalName, String lastLegalName, String email, String password, String confirmPassword,
+                                String gender, String bloodType, String medicareNumber) {
         if(firstLegalName.isEmpty()) {
             firstLegalNameEditTxt.setError("First Legal Name Is Required!");
             firstLegalNameEditTxt.requestFocus();
@@ -163,12 +163,22 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             confirmPasswordEditTxt.requestFocus();
             return;
         }
-        if (medicareNumber.isEmpty()) {
-            medicareNumberTxt.setError("Medicare Number Is Required");
-            medicareNumberTxt.requestFocus();
+        if (bloodType.isEmpty()) {
+            bloodTypeEditTxt.setError("Blood Type Is Required");
+            bloodTypeEditTxt.requestFocus();
             return;
         }
-        // check if medicare is 12 number here
+        if (medicareNumber.isEmpty()) {
+            medicareNumberEditTxt.setError("Medicare Number Is Required");
+            medicareNumberEditTxt.requestFocus();
+            return;
+        }
+        // Check if medicare is 12 number here
+        if (medicareNumber.length() != 12) {
+            medicareNumberEditTxt.setError("Medicare should be 12 digit!");
+            medicareNumberEditTxt.requestFocus();
+            return;
+        }
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -183,6 +193,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                     HashMap userMap = new HashMap();
                     userMap.put( "firstName", getFirstLegalName() );
                     userMap.put( "lastName", getLastLegalName() );
+                    userMap.put( "password", getPassword() );
                     userMap.put( "gender", getGenderRg() );
                     userMap.put( "age", getAge() );
                     userMap.put( "height", getHeight() );
@@ -199,7 +210,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                                 finish();
                             } else {
                                 String message = task.getException().getMessage();
-                                Toast.makeText( getApplicationContext(), "Oh no! Something went wrong OWO.\n" + message, Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( getApplicationContext(), "Oh no! Something went wrong!" + message, Toast.LENGTH_SHORT ).show();
                             }
                         }
                     } );

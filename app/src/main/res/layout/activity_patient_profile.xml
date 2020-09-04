@@ -7,11 +7,10 @@
     tools:context=".PatientActivity"
     android:background="@color/colorAccent"
     android:orientation="vertical"
-    tools:openDrawer="start"
-    android:id="@+id/drawer_layout">
+    android:id="@+id/drawerLayout">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/navView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightWhite"
@@ -26,6 +25,7 @@
         android:background="@color/colorAccent">
 
         <ImageView
+            android:id="@+id/navIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/menu_icon" />
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content">
         
         <TextView
-            android:id="@+id/full_name"
+            android:id="@+id/fullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -48,7 +48,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="First Name"
+                android:text="@string/profile_first_name_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -71,13 +71,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="Nathan" />
+                android:text="@string/profile_first_name_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="80dp"
@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Last Name"
+                android:text="@string/profile_last_name_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -100,13 +100,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="Dang" />
+                android:text="@string/profile_last_name_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="140dp"
@@ -117,7 +117,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="@string/profile_gender_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -129,13 +129,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="Male" />
+                android:text="@string/profile_gender_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="200dp"
@@ -146,7 +146,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Age"
+                android:text="@string/profile_age_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -158,13 +158,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="20" />
+                android:text="@string/profile_age_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="260dp"
@@ -175,7 +175,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Height"
+                android:text="@string/profile_height_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -187,13 +187,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="180" />
+                android:text="@string/profile_height_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="320dp"
@@ -204,7 +204,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weight"
+                android:text="@string/profile_weight_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -216,13 +216,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="80" />
+                android:text="@string/profile_weight_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="380dp"
@@ -233,7 +233,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blood Type"
+                android:text="@string/profile_blood_type_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -245,13 +245,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="O" />
+                android:text="@string/profile_blood_type_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="440dp"
@@ -262,7 +262,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Medicare"
+                android:text="@string/profile_medicare_label"
                 app:drawableLeftCompat="@drawable/ic_action_age"
                 app:drawableStartCompat="@drawable/ic_action_age"
                 android:layout_centerVertical="true"
@@ -274,13 +274,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="12345" />
+                android:text="@string/profile_medicare_txt" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/full_name"
+            android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="500dp"
