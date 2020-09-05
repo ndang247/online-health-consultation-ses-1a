@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Build;
@@ -21,8 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.fragments.ChatsFragment;
-import com.example.myapplication.fragments.DoctorsFragment;
-import com.example.myapplication.models.Patient;
+import com.example.myapplication.fragments.PatientsFragment;
+import com.example.myapplication.models.Doctor;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,7 +38,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PatientChatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DoctorChatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private CircleImageView profileImage;
     private TextView username;
@@ -53,7 +53,7 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_chat);
+        setContentView(R.layout.activity_doctor_chat);
 
         initViews();
 
@@ -67,15 +67,15 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
         username = findViewById(R.id.username);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("patients").child(firebaseUser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("doctors").child(firebaseUser.getUid());
 
         reference.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Patient patient = snapshot.getValue(Patient.class);
-                assert patient != null;
-                username.setText(patient.getFirstLegalName().concat(" " + patient.getLastLegalName()));
+                Doctor doctor = snapshot.getValue(Doctor.class);
+                assert doctor != null;
+                username.setText(doctor.getFirstLegalName().concat(" " + doctor.getLastLegalName()));
                 // Set profile image here
                 profileImage.setImageResource(R.mipmap.ic_launcher);
                 //
@@ -94,7 +94,7 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
 
         viewPageAdapter.addFragment(new ChatsFragment(), "Messages");
-        viewPageAdapter.addFragment(new DoctorsFragment(), "Doctors");
+        viewPageAdapter.addFragment(new PatientsFragment(), "Patients");
 
         viewPager.setAdapter(viewPageAdapter);
 
@@ -141,7 +141,7 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                Intent intent = new Intent(PatientChatActivity.this, PatientActivity.class);
+                Intent intent = new Intent(DoctorChatActivity.this, DoctorActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_edit_profile:
@@ -150,16 +150,14 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
                 break;
             case R.id.nav_search:
                 break;
-            case R.id.nav_doctor_location:
-                break;
             case R.id.nav_setting:
                 break;
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent loginIntent = new Intent(PatientChatActivity.this, PatientLoginActivity.class);
+                Intent loginIntent = new Intent(DoctorChatActivity.this, DoctorLoginActivity.class);
                 startActivity(loginIntent);
                 finish();
-                break;
+                return true;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

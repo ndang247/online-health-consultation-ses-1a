@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.opengl.ETC1;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import com.example.myapplication.adapters.MessageAdapter;
 import com.example.myapplication.models.Chat;
 import com.example.myapplication.models.Doctor;
+import com.example.myapplication.models.Patient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +35,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PatientMessageActivity extends AppCompatActivity {
+public class DoctorMessageActivity extends AppCompatActivity {
 
     private CircleImageView profileImage;
     private TextView username;
@@ -53,12 +53,11 @@ public class PatientMessageActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_message);
+        setContentView(R.layout.activity_doctor_message);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,7 +82,7 @@ public class PatientMessageActivity extends AppCompatActivity {
         txtSend = findViewById(R.id.txtSend);
 
         intent = getIntent();
-        final String doctorID = intent.getStringExtra("doctorID");
+        final String patientID = intent.getStringExtra("patientID");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -91,28 +90,27 @@ public class PatientMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String msg = txtSend.getText().toString();
                 if (!msg.equals("")) {
-                    sendMessage(firebaseUser.getUid(), doctorID, msg);
+                    sendMessage(firebaseUser.getUid(), patientID, msg);
                 } else {
-                    Toast.makeText(PatientMessageActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DoctorMessageActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
                 }
                 txtSend.setText("");
             }
         });
 
-        assert doctorID != null;
-        reference = FirebaseDatabase.getInstance().getReference("doctors").child(doctorID);
+        reference = FirebaseDatabase.getInstance().getReference("patients").child(patientID);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Doctor doctor = snapshot.getValue(Doctor.class);
-                assert doctor != null;
-                username.setText(doctor.getFirstLegalName().concat(" " + doctor.getLastLegalName()));
+                Patient patient = snapshot.getValue(Patient.class);
+                assert patient != null;
+                username.setText(patient.getFirstLegalName().concat(" " + patient.getLastLegalName()));
                 // Set profile image here
                 profileImage.setImageResource(R.mipmap.ic_launcher);
                 //
 
-                readMessages(firebaseUser.getUid(), doctorID);
+                readMessages(firebaseUser.getUid(), patientID);
             }
 
             @Override
@@ -133,7 +131,7 @@ public class PatientMessageActivity extends AppCompatActivity {
         reference.child("chats").push().setValue(hashMap);
     }
 
-    private void readMessages(final String myID, final String doctorID/*, final String imageURL*/) {
+    private void readMessages(final String myID, final String patientID/*, final String imageURL*/) {
         mChats = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("chats");
 
@@ -143,12 +141,12 @@ public class PatientMessageActivity extends AppCompatActivity {
                 mChats.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Chat chat = dataSnapshot.getValue(Chat.class);
-                    if (chat.getReceiver().equals(myID) && chat.getSender().equals(doctorID) ||
-                    chat.getReceiver().equals(doctorID) && chat.getSender().equals(myID)) {
+                    if (chat.getReceiver().equals(myID) && chat.getSender().equals(patientID) ||
+                            chat.getReceiver().equals(patientID) && chat.getSender().equals(myID)) {
                         mChats.add(chat);
                     }
 
-                    messageAdapter = new MessageAdapter(PatientMessageActivity.this, mChats/*, imageUR*/);
+                    messageAdapter = new MessageAdapter(DoctorMessageActivity.this, mChats/*, imageUR*/);
                     recyclerView.setAdapter(messageAdapter);
                 }
             }

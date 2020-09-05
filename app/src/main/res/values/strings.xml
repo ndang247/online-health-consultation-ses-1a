@@ -24,7 +24,6 @@
     <string name="height_edit_txt">Height</string>
     <string name="weight_edit_txt">Weight</string>
     <string name="welcome_back_txt">WellCome Back</string>
-    <string name="doctor_name_txt">DOC Name</string>
     <string name="change_the_avatar_txt">Change the Avatar</string>
     <string name="hist_booking_label">20</string>
     <string name="schedule_txt">Schedule</string>
@@ -39,6 +38,7 @@
     <string name="self_introduce_edit_txt">Bla</string>
     <string name="update_btn">Update</string>
     <string name="patient_name_txt">Welcome</string>
+    <string name="doctor_name_txt">Welcome Dr</string>
     <string name="title_txt">Student</string>
     <string name="booking_status_txt">Yes</string>
     <string name="current_bookings_status_txt">Current Bookings Status</string>
