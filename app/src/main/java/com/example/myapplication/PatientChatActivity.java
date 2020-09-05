@@ -21,7 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.fragments.ChatsFragment;
-import com.example.myapplication.fragments.UsersFragment;
+import com.example.myapplication.fragments.DoctorsFragment;
+import com.example.myapplication.models.Patient;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +38,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class PatientChatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private CircleImageView profileImage;
     private TextView username;
@@ -48,10 +49,11 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_patient_chat);
 
         initViews();
 
@@ -59,7 +61,7 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
 
         profileImage = findViewById(R.id.profileImage);
         username = findViewById(R.id.username);
@@ -71,7 +73,11 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                username.setText(Objects.requireNonNull(snapshot.child("firstName").getValue(String.class)).concat(" " + Objects.requireNonNull(snapshot.child("lastName").getValue(String.class))));
+                Patient patient = snapshot.getValue(Patient.class);
+                assert patient != null;
+                username.setText(patient.getFirstLegalName().concat(" " + patient.getLastLegalName()));
+                profileImage.setImageResource(R.mipmap.ic_launcher);
+                /*username.setText(Objects.requireNonNull(snapshot.child("firstName").getValue(String.class)).concat(" " + Objects.requireNonNull(snapshot.child("lastName").getValue(String.class))));*/
             }
 
             @Override
@@ -86,7 +92,7 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
 
         viewPageAdapter.addFragment(new ChatsFragment(), "Messages");
-        viewPageAdapter.addFragment(new UsersFragment(), "Users");
+        viewPageAdapter.addFragment(new DoctorsFragment(), "Doctors");
 
         viewPager.setAdapter(viewPageAdapter);
 
@@ -133,7 +139,7 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                Intent intent = new Intent(ChatActivity.this, PatientActivity.class);
+                Intent intent = new Intent(PatientChatActivity.this, PatientActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_edit_profile:

@@ -1,8 +1,9 @@
 package com.example.myapplication.models;
 
-import android.content.pm.PackageItemInfo;
-
 public class Patient {
+
+    private String id;
+
     private String firstLegalName;
     private String lastLegalName;
     private String password;
@@ -17,7 +18,8 @@ public class Patient {
 
     }
 
-    public Patient(String firstLegalName, String lastLegalName, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber) {
+    public Patient(String id, String firstLegalName, String lastLegalName, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber) {
+        this.id = id;
         this.firstLegalName = firstLegalName;
         this.lastLegalName = lastLegalName;
         this.password = password;
@@ -27,6 +29,14 @@ public class Patient {
         this.weight = weight;
         this.bloodType = bloodType;
         this.medicareNumber = medicareNumber;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstLegalName() {
