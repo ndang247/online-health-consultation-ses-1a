@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.PathEffect;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,9 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication.models.Patient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,13 +24,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Objects;
-
 public class PatientRegistrationActivity extends AppCompatActivity {
 
     private EditText firstLegalNameEditTxt, lastLegalNameEditTxt, passwordEditTxt, confirmPasswordEditTxt,
-            ageEditTxt, heightEditTxt, weightEditTxt, bloodTypeEditTxt, medicareNumberTxt, emailEditTxt;
+            ageEditTxt, heightEditTxt, weightEditTxt, bloodTypeEditTxt, medicareNumberEditTxt, emailEditTxt;
 
     private RadioGroup genderRg;
     private TextView alreadyRegisteredTxt;
@@ -76,7 +73,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
         heightEditTxt = findViewById(R.id.heightEditTxt);
         weightEditTxt = findViewById(R.id.weightEditTxt);
         bloodTypeEditTxt = findViewById(R.id.bloodTypeEditTxt);
-        medicareNumberTxt = findViewById(R.id.medicareNumberTxt);
+        medicareNumberEditTxt = findViewById(R.id.medicareNumberTxt);
         registerBtn = findViewById(R.id.registerBtn);
         alreadyRegisteredTxt = findViewById(R.id.alreadyRegisteredTxt);
     }
@@ -102,7 +99,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
     }
 
     public String getMedicareNumber() {
-        return medicareNumberTxt.getText().toString();
+        return medicareNumberEditTxt.getText().toString();
     }
 
     public String getBloodType() {
@@ -169,12 +166,16 @@ public class PatientRegistrationActivity extends AppCompatActivity {
             return;
         }
         if (medicareNumber.isEmpty()) {
-            medicareNumberTxt.setError("Medicare Number Is Required");
-            medicareNumberTxt.requestFocus();
+            medicareNumberEditTxt.setError("Medicare Number Is Required");
+            medicareNumberEditTxt.requestFocus();
             return;
         }
-
         // Check if medicare is 12 number here
+        if (medicareNumber.length() != 12) {
+            medicareNumberEditTxt.setError("Medicare should be 12 digit!");
+            medicareNumberEditTxt.requestFocus();
+            return;
+        }
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -186,7 +187,15 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                     String uid = currentUser.getUid();
                     DatabaseReference childRef = mDatabase.child(uid);
 
-                    HashMap userMap = new HashMap();
+                    Patient patient = new Patient(uid, getFirstLegalName(), getLastLegalName(), getPassword(),
+                            getGenderRg(), getAge(), getHeight(), getWeight(), getBloodType(), getMedicareNumber());
+                    childRef.setValue(patient);
+
+                    Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
+                    startActivity( new Intent( PatientRegistrationActivity.this, PatientActivity.class ) );
+                    finish();
+
+                    /*HashMap userMap = new HashMap();
                     userMap.put( "firstName", getFirstLegalName() );
                     userMap.put( "lastName", getLastLegalName() );
                     userMap.put( "password", getPassword() );
@@ -209,7 +218,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                                 Toast.makeText( getApplicationContext(), "Oh no! Something went wrong!" + message, Toast.LENGTH_SHORT ).show();
                             }
                         }
-                    } );
+                    } );*/
 
                 } else if(task.getException() instanceof FirebaseAuthUserCollisionException) { // Check if account is already in used
                     Toast.makeText(PatientRegistrationActivity.this, "Account Already Existed!", Toast.LENGTH_SHORT ).show();

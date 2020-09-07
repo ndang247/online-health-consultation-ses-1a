@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.models.Doctor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,8 +26,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 public class DoctorRegistrationActivity extends AppCompatActivity {
 
@@ -55,7 +54,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createAccount(getStaffNumber(), getEmail(), getFirstLegalName(), getLastLegalName(),
-                        getPassword(), getConfirmPassword(), getGenderRg(), getSpecialty());
+                        getPassword(), getConfirmPassword(), getGenderRg(), getSpecialty(), getClinicName());
             }
         });
 
@@ -122,15 +121,19 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
     }
 
     // Get clinic name here
+    public String getClinicName () {
+        return clinicSpinner.getSelectedItem().toString();
+    }
 
     public String getPhoneNumber() {
         return phoneNumberEditTxt.getText().toString();
     }
 
-
     // Do doctor registration function here
 
-    private void createAccount(String staffNumber, String email, String firstLegalName, String lastLegalName, String password, String confirmPassword, String gender, String specialty){
+    private void createAccount(String staffNumber, String email, String firstLegalName, String lastLegalName,
+                               String password, String confirmPassword,
+                               String gender, String specialty, String clinicName){
         if (staffNumber.isEmpty()){
             staffNumberEditTxt.setError("Staff Number Is Required!");
             staffNumberEditTxt.requestFocus();
@@ -187,15 +190,15 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                     String uid = currentUser.getUid();
                     DatabaseReference childRef = mDatabase.child(uid);
 
-                    /*Doctor doctor = new Doctor(getStaffNumber(), getFirstLegalName(), getLastLegalName(),
-                            getPassword(), getGenderRg(), getAge(), getSpecialty(), "Sydney", getPhoneNumber());
+                    Doctor doctor = new Doctor(uid, getStaffNumber(), getFirstLegalName(), getLastLegalName(),
+                            getPassword(), getGenderRg(), getAge(), getSpecialty(), getClinicName(), getPhoneNumber());
                     childRef.setValue(doctor);
 
                     Toast.makeText(DoctorRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
                     startActivity( new Intent( DoctorRegistrationActivity.this, DoctorActivity.class ) );
-                    finish();*/
+                    finish();
 
-                    HashMap userMap = new HashMap();
+                    /*HashMap userMap = new HashMap();
                     userMap.put( "staffNumber", getStaffNumber() );
                     userMap.put( "fistName", getFirstLegalName() );
                     userMap.put( "lastName", getLastLegalName() );
@@ -203,7 +206,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                     userMap.put( "gender", getGenderRg() );
                     userMap.put( "age", getAge() );
                     userMap.put( "specialty", getSpecialty() );
-                    // Add clinic here
+                    userMap.put( "clinicName", getClinicName() );
                     userMap.put( "phoneNumber", getPhoneNumber() );
 
                     childRef.updateChildren(userMap).addOnCompleteListener( new OnCompleteListener() {
@@ -218,7 +221,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                                 Toast.makeText( getApplicationContext(), "Oh no! Something went wrong!" + message, Toast.LENGTH_SHORT ).show();
                             }
                         }
-                    });
+                    });*/
                 } else if(task.getException() instanceof FirebaseAuthUserCollisionException) { // Check if account is already in used
                     Toast.makeText(DoctorRegistrationActivity.this, "Account Already Existed!", Toast.LENGTH_SHORT ).show();
                 }

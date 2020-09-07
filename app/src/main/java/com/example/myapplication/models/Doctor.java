@@ -1,6 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.models;
 
 public class Doctor {
+
+    private String id;
+
     private String staffNumber;
     private String firstLegalName;
     private String lastLegalName;
@@ -15,7 +18,8 @@ public class Doctor {
 
     }
 
-    public Doctor(String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
+    public Doctor(String id, String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber) {
+        this.id = id;
         this.staffNumber = staffNumber;
         this.firstLegalName = firstLegalName;
         this.lastLegalName = lastLegalName;
@@ -25,6 +29,14 @@ public class Doctor {
         this.specialty = specialty;
         this.clinicName = clinicName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStaffNumber() {

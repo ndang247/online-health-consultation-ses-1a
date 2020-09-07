@@ -7,11 +7,10 @@
     tools:context=".PatientActivity"
     android:background="@color/colorAccent"
     android:orientation="vertical"
-    tools:openDrawer="start"
-    android:id="@+id/drawer_layout">
+    android:id="@+id/drawerLayout">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/navView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightWhite"
@@ -26,6 +25,7 @@
         android:background="@color/colorAccent">
 
         <ImageView
+            android:id="@+id/navIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/menu_icon" />
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="@string/profile_doctor_full_name_txt"
+            android:text="@string/doctor_name_txt"
             android:textSize="24sp"
             android:fontFamily="@font/bungee"
             android:layout_centerHorizontal="true" />
@@ -51,7 +51,7 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/lightWhite"
             android:elevation="8dp">
@@ -80,7 +80,7 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="20dp"
             android:background="@color/lightWhite"
             android:elevation="8dp">
@@ -109,7 +109,7 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="140dp"
             android:layout_marginBottom="40dp"
             android:background="@color/lightWhite"
             android:elevation="8dp">
@@ -138,7 +138,7 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="200dp"
             android:layout_marginBottom="40dp"
             android:background="@color/lightWhite"
             android:elevation="8dp">
@@ -167,7 +167,36 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="260dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/lightWhite"
+            android:elevation="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_age_label"
+                app:drawableLeftCompat="@drawable/ic_action_age"
+                app:drawableStartCompat="@drawable/ic_action_age"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/profile_age_txt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/fullName"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="320dp"
             android:layout_marginBottom="40dp"
             android:background="@color/lightWhite"
             android:elevation="8dp">
@@ -182,7 +211,7 @@
                 android:layout_marginLeft="15dp" />
 
             <TextView
-                android:id="@+id/age"
+                android:id="@+id/specialty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -196,7 +225,7 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="340dp"
+            android:layout_marginTop="380dp"
             android:layout_marginBottom="40dp"
             android:background="@color/lightWhite"
             android:elevation="8dp">
@@ -211,7 +240,7 @@
                 android:layout_marginLeft="15dp" />
 
             <TextView
-                android:id="@+id/height"
+                android:id="@+id/clinicName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -225,7 +254,36 @@
             android:layout_below="@id/fullName"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="440dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/lightWhite"
+            android:elevation="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_phone_number_label"
+                app:drawableLeftCompat="@drawable/ic_action_age"
+                app:drawableStartCompat="@drawable/ic_action_age"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/profile_phone_number_txt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/fullName"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="500dp"
             android:layout_marginBottom="40dp"
             android:elevation="8dp">
 

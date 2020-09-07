@@ -24,7 +24,6 @@
     <string name="height_edit_txt">Height</string>
     <string name="weight_edit_txt">Weight</string>
     <string name="welcome_back_txt">WellCome Back</string>
-    <string name="doctor_name_txt">DOC Name</string>
     <string name="change_the_avatar_txt">Change the Avatar</string>
     <string name="hist_booking_label">20</string>
     <string name="schedule_txt">Schedule</string>
@@ -36,9 +35,10 @@
     <string name="department_txt">Department</string>
     <string name="department_specialty_edit_txt">Surgical</string>
     <string name="self_introduce_txt">Self Introduce</string>
-    <string name="self_introduce_edit_txt">Bla bla bla bla</string>
+    <string name="self_introduce_edit_txt">Bla</string>
     <string name="update_btn">Update</string>
     <string name="patient_name_txt">Welcome</string>
+    <string name="doctor_name_txt">Welcome Dr</string>
     <string name="title_txt">Student</string>
     <string name="booking_status_txt">Yes</string>
     <string name="current_bookings_status_txt">Current Bookings Status</string>
@@ -72,6 +72,11 @@
     <string name="profile_specialty_txt" />
     <string name="profile_clinic_name_label">Clinic Name</string>
     <string name="profile_clinic_name_txt" />
+    <string name="profile_phone_number_label">Phone</string>
+    <string name="profile_phone_number_txt" />
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="chat_username_txt">username</string>
 
     <array name="height_unit">
         <item>Cm</item>
@@ -94,5 +99,7 @@
         <item>NY</item>
         <item>Brookyn</item>
     </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
