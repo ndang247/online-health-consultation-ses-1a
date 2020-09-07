@@ -2,17 +2,13 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.Group;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -53,15 +49,30 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
 
         // Get an instance then a reference of the database
         mDatabase = FirebaseDatabase.getInstance().getReference("patients");
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         assert currentUser != null;
         final String uid = currentUser.getUid();
         DatabaseReference childRef = mDatabase.child(uid);
+
         childRef.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                fullName.setText(getString(R.string.patient_name_txt).concat(" " + Objects.requireNonNull(snapshot.child("firstName").getValue(String.class)) + " " + Objects.requireNonNull(snapshot.child("lastName").getValue(String.class))));
+                Patient patient = snapshot.getValue(Patient.class);
+
+                assert patient != null;
+                fullName.setText(getString(R.string.patient_name_txt).concat(" " + patient.getFirstLegalName() + " " + patient.getLastLegalName()));
+                firstName.setText(patient.getFirstLegalName());
+                lastName.setText(patient.getLastLegalName());
+                gender.setText(patient.getGender());
+                age.setText(patient.getAge());
+                height.setText(patient.getHeight());
+                weight.setText(patient.getWeight());
+                bloodType.setText(patient.getBloodType());
+                medicare.setText(patient.getMedicareNumber());
+
+                /*fullName.setText(getString(R.string.patient_name_txt).concat(" " + Objects.requireNonNull(snapshot.child("firstName").getValue(String.class)) + " " + Objects.requireNonNull(snapshot.child("lastName").getValue(String.class))));
                 firstName.setText(snapshot.child("firstName").getValue(String.class));
                 lastName.setText(snapshot.child("lastName").getValue(String.class));
                 gender.setText(snapshot.child("gender").getValue(String.class));
@@ -69,7 +80,7 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
                 height.setText(snapshot.child("height").getValue(String.class));
                 weight.setText(snapshot.child("weight").getValue(String.class));
                 bloodType.setText(snapshot.child("bloodType").getValue(String.class));
-                medicare.setText(snapshot.child("medicareNumber").getValue(String.class));
+                medicare.setText(snapshot.child("medicareNumber").getValue(String.class));*/
             }
 
             @Override
@@ -130,7 +141,7 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_edit_profile:
                 break;
             case R.id.nav_messages:
-                Intent msgIntent = new Intent(PatientActivity.this, ChatActivity.class);
+                Intent msgIntent = new Intent(PatientActivity.this, PatientChatActivity.class);
                 startActivity(msgIntent);
                 break;
             case R.id.nav_contacts:

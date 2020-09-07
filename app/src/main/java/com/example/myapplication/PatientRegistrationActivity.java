@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.PathEffect;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,9 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication.models.Patient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,9 +23,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Objects;
 
 public class PatientRegistrationActivity extends AppCompatActivity {
 
@@ -190,7 +187,15 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                     String uid = currentUser.getUid();
                     DatabaseReference childRef = mDatabase.child(uid);
 
-                    HashMap userMap = new HashMap();
+                    Patient patient = new Patient(uid, getFirstLegalName(), getLastLegalName(), getPassword(),
+                            getGenderRg(), getAge(), getHeight(), getWeight(), getBloodType(), getMedicareNumber());
+                    childRef.setValue(patient);
+
+                    Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
+                    startActivity( new Intent( PatientRegistrationActivity.this, PatientActivity.class ) );
+                    finish();
+
+                    /*HashMap userMap = new HashMap();
                     userMap.put( "firstName", getFirstLegalName() );
                     userMap.put( "lastName", getLastLegalName() );
                     userMap.put( "password", getPassword() );
@@ -213,7 +218,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                                 Toast.makeText( getApplicationContext(), "Oh no! Something went wrong!" + message, Toast.LENGTH_SHORT ).show();
                             }
                         }
-                    } );
+                    } );*/
 
                 } else if(task.getException() instanceof FirebaseAuthUserCollisionException) { // Check if account is already in used
                     Toast.makeText(PatientRegistrationActivity.this, "Account Already Existed!", Toast.LENGTH_SHORT ).show();
