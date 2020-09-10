@@ -67,12 +67,10 @@ public class SignInOptionsActivity extends AppCompatActivity implements View.OnC
     private void loginAsPatient() {
         Intent intent = new Intent(SignInOptionsActivity.this, PatientLoginActivity.class);
         startActivity(intent);
-        finish();
     }
 
     private void loginAsDoctor() {
         Intent intent = new Intent(SignInOptionsActivity.this, DoctorLoginActivity.class);
         startActivity(intent);
-        finish();
     }
 }
