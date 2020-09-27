@@ -20,8 +20,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.fragments.ChatsFragment;
+import com.example.myapplication.fragments.DoctorChatsFragment;
 import com.example.myapplication.fragments.DoctorsFragment;
+import com.example.myapplication.fragments.PatientChatsFragment;
+import com.example.myapplication.fragments.PatientsFragment;
 import com.example.myapplication.models.Patient;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -93,7 +95,7 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
 
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
 
-        viewPageAdapter.addFragment(new ChatsFragment(), "Messages");
+        viewPageAdapter.addFragment(new PatientChatsFragment(), "Messages");
         viewPageAdapter.addFragment(new DoctorsFragment(), "Doctors");
 
         viewPager.setAdapter(viewPageAdapter);

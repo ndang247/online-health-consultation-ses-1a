@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.fragments.ChatsFragment;
+import com.example.myapplication.fragments.DoctorChatsFragment;
 import com.example.myapplication.fragments.PatientsFragment;
 import com.example.myapplication.models.Doctor;
 import com.google.android.material.navigation.NavigationView;
@@ -93,7 +93,7 @@ public class DoctorChatActivity extends AppCompatActivity implements NavigationV
 
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
 
-        viewPageAdapter.addFragment(new ChatsFragment(), "Messages");
+        viewPageAdapter.addFragment(new DoctorChatsFragment(), "Messages");
         viewPageAdapter.addFragment(new PatientsFragment(), "Patients");
 
         viewPager.setAdapter(viewPageAdapter);
