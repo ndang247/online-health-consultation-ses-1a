@@ -14,11 +14,13 @@ public class Patient {
     private String bloodType;
     private String medicareNumber;
 
+    private String imageURL;
+
     public Patient() {
 
     }
 
-    public Patient(String id, String firstLegalName, String lastLegalName, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber) {
+    public Patient(String id, String firstLegalName, String lastLegalName, String password, String gender, String age, String height, String weight, String bloodType, String medicareNumber, String imageURL) {
         this.id = id;
         this.firstLegalName = firstLegalName;
         this.lastLegalName = lastLegalName;
@@ -29,6 +31,7 @@ public class Patient {
         this.weight = weight;
         this.bloodType = bloodType;
         this.medicareNumber = medicareNumber;
+        this.imageURL = imageURL;
     }
 
     public String getId() {
@@ -109,5 +112,13 @@ public class Patient {
 
     public void setMedicareNumber(String medicareNumber) {
         this.medicareNumber = medicareNumber;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

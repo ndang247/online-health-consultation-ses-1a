@@ -188,7 +188,7 @@ public class PatientRegistrationActivity extends AppCompatActivity {
                     DatabaseReference childRef = mDatabase.child(uid);
 
                     Patient patient = new Patient(uid, getFirstLegalName(), getLastLegalName(), getPassword(),
-                            getGenderRg(), getAge(), getHeight(), getWeight(), getBloodType(), getMedicareNumber());
+                            getGenderRg(), getAge(), getHeight(), getWeight(), getBloodType(), getMedicareNumber(), "default");
                     childRef.setValue(patient);
 
                     Toast.makeText(PatientRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();
