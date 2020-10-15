@@ -44,11 +44,6 @@ public class PatientProfileFragment extends Fragment {
     DatabaseReference reference;
     FirebaseUser firebaseUser;
 
-    StorageReference storageReference;
-    private static final int IMAGE_REQUEST = 1;
-    private Uri imageUri;
-    private StorageTask uploadTask;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,8 +52,6 @@ public class PatientProfileFragment extends Fragment {
 
         profileImage = view.findViewById(R.id.profileImage);
         profileUsername = view.findViewById(R.id.profileUsername);
-
-        storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("patients").child(firebaseUser.getUid());
@@ -82,27 +75,6 @@ public class PatientProfileFragment extends Fragment {
 
             }
         });
-
-        profileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openImage();
-            }
-        });
-
         return view;
-    }
-
-    private void openImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMAGE_REQUEST);
-    }
-
-    private String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getContext().getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getMimeTypeFromExtension(contentResolver.getType(uri));
     }
 }

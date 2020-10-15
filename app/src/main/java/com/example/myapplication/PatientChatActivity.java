@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -163,9 +164,8 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
                 break;
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent loginIntent = new Intent(PatientChatActivity.this, PatientLoginActivity.class);
+                Intent loginIntent = new Intent(PatientChatActivity.this, PatientLoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(loginIntent);
-                finish();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -204,5 +204,26 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
         public CharSequence getPageTitle(int position) {
             return titles.get(position);
         }
+    }
+
+    private void status(String status) {
+        reference = FirebaseDatabase.getInstance().getReference("patients").child(firebaseUser.getUid());
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        reference.updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
     }
 }
