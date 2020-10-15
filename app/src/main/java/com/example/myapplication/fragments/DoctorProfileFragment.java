@@ -54,7 +54,7 @@ public class DoctorProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Doctor doctor = snapshot.getValue(Doctor.class);
                 assert doctor != null;
-                profileUsername.setText(doctor.getFirstLegalName().concat(" " + doctor.getLastLegalName()));
+                profileUsername.setText("Dr".concat(" " + doctor.getFirstLegalName() + " " + doctor.getLastLegalName()));
                 if (doctor.getImageURL().equals("default")) {
                     profileImage.setImageResource(R.mipmap.ic_launcher);
                 } else {

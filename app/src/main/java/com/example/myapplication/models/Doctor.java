@@ -15,12 +15,13 @@ public class Doctor {
     private String phoneNumber; // Not Required
 
     private String imageURL;
+    private String status;
 
     public Doctor() {
 
     }
 
-    public Doctor(String id, String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber, String imageURL) {
+    public Doctor(String id, String staffNumber, String firstLegalName, String lastLegalName, String password, String gender, String age, String specialty, String clinicName, String phoneNumber, String imageURL, String status) {
         this.id = id;
         this.staffNumber = staffNumber;
         this.firstLegalName = firstLegalName;
@@ -32,6 +33,7 @@ public class Doctor {
         this.clinicName = clinicName;
         this.phoneNumber = phoneNumber;
         this.imageURL = imageURL;
+        this.status = status;
     }
 
     public String getId() {
@@ -120,5 +122,13 @@ public class Doctor {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -157,9 +157,8 @@ public class DoctorChatActivity extends AppCompatActivity implements NavigationV
                 break;
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent loginIntent = new Intent(DoctorChatActivity.this, DoctorLoginActivity.class);
+                Intent loginIntent = new Intent(DoctorChatActivity.this, DoctorLoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(loginIntent);
-                finish();
                 return true;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
