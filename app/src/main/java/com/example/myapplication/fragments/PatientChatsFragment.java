@@ -110,7 +110,7 @@ public class PatientChatsFragment extends Fragment {
                     }
                 }
 
-                doctorAdapter = new DoctorAdapter(getContext(), mDoctors);
+                doctorAdapter = new DoctorAdapter(getContext(), mDoctors, true);
                 recyclerView.setAdapter(doctorAdapter);
             }
 

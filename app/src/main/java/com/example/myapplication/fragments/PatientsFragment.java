@@ -58,7 +58,7 @@ public class PatientsFragment extends Fragment {
                     mPatients.add(patient);
                 }
 
-                patientAdapter = new PatientAdapter(getContext(), mPatients);
+                patientAdapter = new PatientAdapter(getContext(), mPatients, false);
                 recyclerView.setAdapter(patientAdapter);
             }
 
