@@ -191,7 +191,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                     DatabaseReference childRef = mDatabase.child(uid);
 
                     Doctor doctor = new Doctor(uid, getStaffNumber(), getFirstLegalName(), getLastLegalName(),
-                            getPassword(), getGenderRg(), getAge(), getSpecialty(), getClinicName(), getPhoneNumber());
+                            getPassword(), getGenderRg(), getAge(), getSpecialty(), getClinicName(), getPhoneNumber(), "default", "offline");
                     childRef.setValue(doctor);
 
                     Toast.makeText(DoctorRegistrationActivity.this, "You've Successfully Registered!", Toast.LENGTH_SHORT ).show();

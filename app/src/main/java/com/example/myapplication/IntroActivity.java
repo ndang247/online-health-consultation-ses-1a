@@ -34,6 +34,5 @@ public class IntroActivity extends AppCompatActivity {
     private void signInOptions() {
         Intent intent = new Intent(IntroActivity.this, SignInOptionsActivity.class);
         startActivity(intent);
-        finish();
     }
 }

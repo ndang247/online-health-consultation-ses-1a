@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.DoctorMessageActivity;
 import com.example.myapplication.PatientMessageActivity;
 import com.example.myapplication.R;
@@ -24,10 +25,12 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
 
     private Context mContext;
     private List<Patient> mPatients;
+    private boolean isChat;
 
-    public PatientAdapter(Context mContext, List<Patient> mPatients) {
+    public PatientAdapter(Context mContext, List<Patient> mPatients, boolean isChat) {
         this.mContext = mContext;
         this.mPatients = mPatients;
+        this.isChat = isChat;
     }
 
     @NonNull
@@ -43,8 +46,24 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
         // Use firebase here
         holder.username.setText(patient.getFirstLegalName().concat(" " + patient.getLastLegalName()));
         // Do profile image here
+        if (patient.getImageURL().equals("default")) {
+            holder.profileImage.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            Glide.with(mContext).load(patient.getImageURL()).into(holder.profileImage);
+        }
 
-        //
+        if (isChat) {
+            if (patient.getStatus().equals("online")) {
+                holder.imageOn.setVisibility(View.VISIBLE);
+                holder.imageOff.setVisibility(View.GONE);
+            } else {
+                holder.imageOn.setVisibility(View.GONE);
+                holder.imageOff.setVisibility(View.VISIBLE);
+            }
+        } else {
+            holder.imageOn.setVisibility(View.GONE);
+            holder.imageOff.setVisibility(View.GONE);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +84,17 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
 
         public TextView username;
         public ImageView profileImage;
+        private ImageView imageOn;
+        private ImageView imageOff;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             username = itemView.findViewById(R.id.usernameTxt);
             profileImage = itemView.findViewById(R.id.profileImage);
+            imageOn = itemView.findViewById(R.id.imageOn);
+            imageOff = itemView.findViewById(R.id.imageOff);
         }
     }
 }

@@ -20,9 +20,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.fragments.DoctorChatsFragment;
 import com.example.myapplication.fragments.DoctorsFragment;
 import com.example.myapplication.fragments.PatientChatsFragment;
+import com.example.myapplication.fragments.PatientProfileFragment;
 import com.example.myapplication.fragments.PatientsFragment;
 import com.example.myapplication.models.Patient;
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -79,9 +82,11 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
                 assert patient != null;
                 username.setText(patient.getFirstLegalName().concat(" " + patient.getLastLegalName()));
                 // Set profile image here
-                profileImage.setImageResource(R.mipmap.ic_launcher);
-                //
-                /*username.setText(Objects.requireNonNull(snapshot.child("firstName").getValue(String.class)).concat(" " + Objects.requireNonNull(snapshot.child("lastName").getValue(String.class))));*/
+                if (patient.getImageURL().equals("default")) {
+                    profileImage.setImageResource(R.mipmap.ic_launcher);
+                } else {
+                    Glide.with(PatientChatActivity.this).load(patient.getImageURL()).into(profileImage);
+                }
             }
 
             @Override
@@ -97,6 +102,7 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
 
         viewPageAdapter.addFragment(new PatientChatsFragment(), "Messages");
         viewPageAdapter.addFragment(new DoctorsFragment(), "Doctors");
+        viewPageAdapter.addFragment(new PatientProfileFragment(), "Profile");
 
         viewPager.setAdapter(viewPageAdapter);
 
@@ -158,9 +164,8 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
                 break;
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent loginIntent = new Intent(PatientChatActivity.this, PatientLoginActivity.class);
+                Intent loginIntent = new Intent(PatientChatActivity.this, PatientLoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(loginIntent);
-                finish();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -199,5 +204,26 @@ public class PatientChatActivity extends AppCompatActivity implements Navigation
         public CharSequence getPageTitle(int position) {
             return titles.get(position);
         }
+    }
+
+    private void status(String status) {
+        reference = FirebaseDatabase.getInstance().getReference("patients").child(firebaseUser.getUid());
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        reference.updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
     }
 }
